@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Translator Pro - Việt Anh </title>
+    <title>AI Video Translator Pro - aexuattinhsom.center</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -24,7 +24,7 @@
                 <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg group-hover:shadow-blue-500/50 transition-all">
                     <span class="text-white font-bold text-lg">L</span>
                 </div>
-                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Việt Anh </span>
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Việt Anh</span>
             </a>
             <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 font-medium transition-colors">
                 <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -63,24 +63,25 @@
                     <div class="flex items-center gap-4 text-sm text-slate-500">
                         <span class="flex items-center text-yellow-400"><svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> 5.0 (Review)</span>
                         <span>|</span>
-                        <span>📦 Đã bán: 0</span>
+                        <span>📦 Đã bán: <span id="sold-count">12</span></span>
                     </div>
                 </div>
                 
                 <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                     <p class="text-sm text-slate-500 mb-1">Giá thanh toán</p>
-                    <p class="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500 drop-shadow-sm">10,000<span class="text-2xl underline ml-1 text-green-500">đ</span></p>
+                    <p class="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 drop-shadow-sm">10,000<span class="text-2xl underline ml-1 text-indigo-600">đ</span></p>
                 </div>
 
                 <!-- Input Coupon -->
                 <div class="mb-6 relative">
                     <input type="text" placeholder="Nhập mã giảm giá (nếu có)..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-700">
-                    <button class="absolute right-2 top-2 bottom-2 bg-slate-800 text-white px-4 rounded-lg text-sm font-semibold hover:bg-slate-700 transition-colors">Áp dụng</button>
+                    <button class="absolute right-2 top-2 bottom-2 bg-slate-900 text-white px-4 rounded-lg text-sm font-semibold hover:bg-slate-800 transition-colors">Áp dụng</button>
                 </div>
 
                 <!-- Buttons -->
                 <div class="flex flex-col gap-4 mt-auto">
-                    <button class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center text-lg">
+                    <!-- Nút thanh toán đã gắn hàm xử lý JavaScript -->
+                    <button onclick="handlePurchase(10000, 'AI Video Translator Pro')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center text-lg">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         Thanh Toán Ngay
                     </button>
@@ -105,26 +106,65 @@
             <div class="prose max-w-none text-slate-600 leading-relaxed text-lg">
                 <p class="mb-4">Tool <strong class="text-blue-600">AI Video Translator Pro</strong> là giải pháp toàn diện hỗ trợ dịch video tự động với độ chuẩn xác cao, tối ưu thời gian làm việc cho anh em MMO và Content Creator.</p>
                 <ul class="space-y-3 mb-6 list-none pl-0">
-                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Tích hợp Model AI Gemini xử lý ngôn ngữ cực mượt.</span></li>
+                    <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Tích hợp Model AI xử lý ngôn ngữ cực mượt.</span></li>
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Bóc tách riêng biệt giọng nói và nhạc nền thông minh.</span></li>
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Tự động Render lồng tiếng xuất thẳng ra file MP4 chuẩn HD.</span></li>
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Tùy chỉnh sub, màu chữ, viền đen cực kỳ dễ dàng trên giao diện.</span></li>
                 </ul>
                 <div class="bg-red-50 text-red-700 p-4 rounded-xl border border-red-100 flex items-start gap-3">
                     <svg class="w-6 h-6 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    <p class="font-medium text-base">Lưu ý: Tool cần key bản quyền kích hoạt theo thiết bị. Vui lòng nhắn tin cho Admin sau khi thanh toán để nhận File Setup & License Key.</p>
+                    <p class="font-medium text-base">Lưu ý: Tool tự động trừ tiền vào Số dư VNĐ trong tài khoản của bạn. Vui lòng nhắn tin cho Admin sau khi thanh toán để nhận File Setup & License Key.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Nút liên hệ Facebook -->
-    <a href="https://www.facebook.com/viettran.213" target="_blank" class="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white p-3.5 rounded-full shadow-lg shadow-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/60 transition-all duration-300 z-50 flex items-center justify-center group cursor-pointer animate-bounce">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-3 transition-all duration-500 ease-in-out font-semibold text-sm">
-            Chat với Admin
-        </span>
-    </a>
+    <!-- JS XỬ LÝ THANH TOÁN MUA HÀNG -->
+    <script>
+        function handlePurchase(price, productName) {
+            // 1. Kiểm tra xem người dùng đã đăng nhập chưa
+            const isLoggedIn = localStorage.getItem('ae_is_logged_in');
+            if (isLoggedIn !== 'true') {
+                alert('Vui lòng đăng nhập tài khoản để thực hiện thanh toán!');
+                // Chuyển hướng người dùng về trang đăng nhập
+                window.location.href = 'account.html';
+                return;
+            }
+
+            // 2. Lấy thông tin tài khoản người dùng từ hệ thống ảo
+            const savedData = localStorage.getItem('ae_user_account');
+            if (!savedData) {
+                alert('Lỗi dữ liệu tài khoản, vui lòng đăng nhập lại!');
+                return;
+            }
+
+            let user = JSON.parse(savedData);
+            let currentBalance = user.balance || 0;
+
+            // 3. Xử lý trừ tiền
+            if (currentBalance >= price) {
+                // Thỏa mãn điều kiện -> Tiến hành trừ tiền
+                user.balance = currentBalance - price;
+                
+                // Lưu lại thông tin mua hàng vào tài khoản
+                if(!user.purchased) user.purchased = [];
+                user.purchased.push(productName);
+
+                // Cập nhật lên LocalStorage
+                localStorage.setItem('ae_user_account', JSON.stringify(user));
+
+                // Hiệu ứng tăng số lượng đã bán (ảo)
+                let soldEl = document.getElementById('sold-count');
+                soldEl.innerText = parseInt(soldEl.innerText) + 1;
+
+                // Thông báo thành công
+                alert(`Thanh toán thành công [${productName}]!\n\nSố dư tài khoản bị trừ: -${price.toLocaleString('vi-VN')}đ.\nSố dư còn lại: ${user.balance.toLocaleString('vi-VN')}đ.\n\nVui lòng nhắn tin cho Admin để nhận File và Key kích hoạt.`);
+            } else {
+                // Không đủ tiền
+                alert(`Thanh toán thất bại!\n\nSố dư của bạn (${currentBalance.toLocaleString('vi-VN')}đ) không đủ để mua sản phẩm này (${price.toLocaleString('vi-VN')}đ).\n\nVui lòng liên hệ Admin để nạp thêm tiền vào tài khoản.`);
+            }
+        }
+    </script>
 
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
