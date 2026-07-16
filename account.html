@@ -62,13 +62,11 @@
                 Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>. Nếu chưa có tài khoản, vui lòng đăng ký.
             </p>
 
-            <!-- Tabs -->
             <div class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
                 <button id="btn-tab-login" onclick="switchTab('login')" class="w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300">Đăng nhập</button>
                 <button id="btn-tab-register" onclick="switchTab('register')" class="w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300">Đăng ký</button>
             </div>
 
-            <!-- Form Đăng nhập -->
             <form id="login-form" onsubmit="handleLogin(event)" class="block">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email tài khoản</label>
@@ -84,7 +82,6 @@
                 </button>
             </form>
 
-            <!-- Form Đăng ký -->
             <form id="register-form" onsubmit="handleRegister(event)" class="hidden">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email của bạn</label>
@@ -104,7 +101,6 @@
                 </button>
             </form>
 
-            <!-- Khối link phụ trợ -->
             <div id="extra-links" class="flex flex-col gap-4 block border-t border-slate-100 pt-5">
                 <button class="flex items-center justify-center gap-2 border border-slate-200 bg-white rounded-full py-2 px-4 text-sm font-semibold text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 w-max transition-all duration-300">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
@@ -119,7 +115,6 @@
             <h2 data-aos="fade-right" class="text-3xl font-extrabold text-slate-800 mb-6">Quyền sử dụng</h2>
             
             <div data-aos="fade-up" class="bg-white rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6 md:p-8 mb-10">
-                <!-- Header User -->
                 <div class="flex items-start gap-4 mb-8">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center flex-shrink-0 text-white text-2xl font-bold shadow-md">
                         <span id="user-avatar-text">A</span>
@@ -131,12 +126,10 @@
                             </span>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-800">aexuattinhsom</h3>
-                        <!-- Sẽ thay đổi email dựa vào tài khoản lúc đăng nhập -->
                         <p id="dashboard-email" class="text-slate-500 text-sm">user@aexuattinhsom.center</p>
                     </div>
                 </div>
 
-                <!-- Nút thao tác -->
                 <div class="flex flex-wrap gap-3 mb-8">
                     <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-bold py-2.5 px-5 rounded-xl flex items-center gap-2 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Tải app
@@ -149,7 +142,6 @@
                     </button>
                 </div>
 
-                <!-- Lưới thông số phút/giờ -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-shadow">
                         <div class="flex items-center gap-2 mb-2">
@@ -164,7 +156,7 @@
                             <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
                             <p class="text-xs font-bold text-blue-500 uppercase tracking-wider">Phút còn lại</p>
                         </div>
-                        <p class="text-lg font-bold text-slate-800">60 phút + <span class="text-blue-600 font-extrabold">43 phút 10s</span> ví phút</p>
+                        <p class="text-lg font-bold text-slate-800">60 phút + <span id="wallet-balance" class="text-blue-600 font-extrabold">0 phút</span> ví phút</p>
                     </div>
                     
                     <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-shadow">
@@ -185,7 +177,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Khối Mini -->
                     <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-1 relative group">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full mix-blend-multiply opacity-50 group-hover:scale-110 transition-transform"></div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Mini</h3>
@@ -196,7 +187,6 @@
                         </button>
                     </div>
 
-                    <!-- Khối Starter -->
                     <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 rounded-3xl p-8 border border-slate-800 shadow-xl shadow-blue-900/20 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 relative group overflow-hidden">
                         <div class="absolute -top-4 -right-4 w-32 h-32 bg-blue-500 rounded-full mix-blend-screen opacity-20 filter blur-xl group-hover:scale-125 transition-transform duration-500"></div>
                         <h3 class="text-xl font-bold text-blue-200 mb-2">Starter</h3>
@@ -216,7 +206,27 @@
     <script>
         AOS.init({ once: true, duration: 600 });
 
-        // Menu Dropdown
+        // TỰ ĐỘNG KIỂM TRA ĐĂNG NHẬP KHI MỞ TRANG
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('ae_is_logged_in');
+            
+            // Nếu cờ đăng nhập = true, hiển thị thẳng Dashboard
+            if (isLoggedIn === 'true') {
+                const savedData = localStorage.getItem('ae_user_account');
+                if (savedData) {
+                    const user = JSON.parse(savedData);
+                    document.getElementById('dashboard-email').innerText = user.email;
+                    document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
+                    document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
+                    
+                    document.getElementById('auth-section').classList.remove('block');
+                    document.getElementById('auth-section').classList.add('hidden');
+                    document.getElementById('dashboard-section').classList.remove('hidden');
+                    document.getElementById('dashboard-section').classList.add('block');
+                }
+            }
+        });
+
         function toggleMenu(event) {
             event.stopPropagation();
             document.getElementById('dropdown-menu').classList.toggle('hidden');
@@ -229,7 +239,6 @@
             }
         }
 
-        // Chuyển Tab
         function switchTab(tabType) {
             const btnLogin = document.getElementById('btn-tab-login');
             const btnRegister = document.getElementById('btn-tab-register');
@@ -252,50 +261,44 @@
             }
         }
 
-        // 1. XỬ LÝ ĐĂNG KÝ
         function handleRegister(event) {
             event.preventDefault();
             const email = document.getElementById('reg-email').value;
             const password = document.getElementById('reg-password').value;
             const confirmPassword = document.getElementById('reg-confirm').value;
 
-            // Kiểm tra mật khẩu khớp nhau
             if (password !== confirmPassword) {
                 alert("Mật khẩu xác nhận không khớp! Vui lòng nhập lại.");
                 return;
             }
 
-            // Lưu dữ liệu vào LocalStorage (Giả lập Database)
-            const userData = { email: email, password: password };
+            const userData = { email: email, password: password, walletMinutes: 0 };
             localStorage.setItem('ae_user_account', JSON.stringify(userData));
             
             alert("Đăng ký tài khoản thành công! Vui lòng đăng nhập để sử dụng.");
-            
-            // Xóa form và chuyển về tab đăng nhập
             document.getElementById('register-form').reset();
             switchTab('login');
         }
 
-        // 2. XỬ LÝ ĐĂNG NHẬP
         function handleLogin(event) {
             event.preventDefault(); 
             const emailInput = document.getElementById('login-email').value;
             const passwordInput = document.getElementById('login-password').value;
 
-            // Lấy dữ liệu đã lưu từ LocalStorage
             const savedData = localStorage.getItem('ae_user_account');
 
             if (savedData) {
                 const user = JSON.parse(savedData);
                 
-                // So sánh Email và Mật khẩu
                 if (user.email === emailInput && user.password === passwordInput) {
                     
-                    // Thành công: Cập nhật Email lên Dashboard
+                    // LƯU CỜ ĐĂNG NHẬP THÀNH CÔNG VÀO TRÌNH DUYỆT
+                    localStorage.setItem('ae_is_logged_in', 'true');
+
                     document.getElementById('dashboard-email').innerText = user.email;
                     document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
+                    document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
 
-                    // Ẩn form, hiện Dashboard
                     document.getElementById('auth-section').classList.remove('block');
                     document.getElementById('auth-section').classList.add('hidden');
                     document.getElementById('dashboard-section').classList.remove('hidden');
@@ -311,8 +314,10 @@
             }
         }
 
-        // 3. XỬ LÝ ĐĂNG XUẤT
         function handleLogout() {
+            // XÓA CỜ ĐĂNG NHẬP KHI ĐĂNG XUẤT
+            localStorage.removeItem('ae_is_logged_in');
+
             document.getElementById('dashboard-section').classList.remove('block');
             document.getElementById('dashboard-section').classList.add('hidden');
             
