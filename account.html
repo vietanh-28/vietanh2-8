@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tài khoản - aexuattinhsom.center</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
@@ -26,7 +23,6 @@
                 <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hidden sm:block">aexuattinhsom.center</span>
                 <span class="text-lg font-bold text-slate-800 block sm:hidden">Hệ thống AE</span>
             </div>
-            
             <div class="relative">
                 <button id="menu-button" onclick="toggleMenu(event)" class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all bg-white shadow-sm">
                     <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -45,16 +41,15 @@
 
     <main class="max-w-4xl mx-auto mt-8 px-4 pb-20">
         
-        <!-- PHẦN 1: FORM ĐĂNG NHẬP / ĐĂNG KÝ -->
+        <!-- PHẦN ĐĂNG NHẬP (ẨN/HIỆN THEO JS) -->
         <div id="auth-section" data-aos="zoom-in" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 block relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 pointer-events-none"></div>
-
             <p class="text-xs font-bold text-blue-500 tracking-wider mb-2 uppercase">Tài khoản</p>
             <h1 class="text-2xl font-extrabold text-slate-800 flex items-center gap-2 mb-3">
                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 Tài khoản Hệ Thống
             </h1>
-            <p class="text-sm text-slate-500 mb-6 leading-relaxed">Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>.</p>
+            <p class="text-sm text-slate-500 mb-6">Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>.</p>
 
             <div class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
                 <button id="btn-tab-login" onclick="switchTab('login')" class="w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300">Đăng nhập</button>
@@ -76,28 +71,25 @@
             <form id="register-form" onsubmit="handleRegister(event)" class="hidden">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email của bạn</label>
-                    <input type="email" id="reg-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
+                    <input type="email" id="reg-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Mật khẩu</label>
-                    <input type="password" id="reg-password" placeholder="Tạo mật khẩu (Ít nhất 6 ký tự)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
+                    <input type="password" id="reg-password" placeholder="Tạo mật khẩu (Ít nhất 6 ký tự)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5" required minlength="6">
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Nhập lại mật khẩu</label>
-                    <input type="password" id="reg-confirm" placeholder="Xác nhận mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
+                    <input type="password" id="reg-confirm" placeholder="Xác nhận mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5" required minlength="6">
                 </div>
-                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-slate-900/20 mb-5">Tạo tài khoản mới</button>
+                <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mb-5">Tạo tài khoản mới</button>
             </form>
 
             <div id="extra-links" class="flex flex-col gap-4 block border-t border-slate-100 pt-5">
-                <button class="flex items-center justify-center gap-2 border border-slate-200 bg-white rounded-full py-2 px-4 text-sm font-semibold text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 w-max transition-all duration-300">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg> Quên mật khẩu?
-                </button>
                 <p class="text-sm font-medium text-slate-600 mt-1">Chưa có tài khoản? <a href="javascript:void(0)" onclick="switchTab('register')" class="text-blue-600 font-bold hover:underline">Đăng ký ngay</a></p>
             </div>
         </div>
 
-        <!-- PHẦN 2 & 3: DASHBOARD -->
+        <!-- PHẦN DASHBOARD TÀI KHOẢN -->
         <div id="dashboard-section" class="hidden">
             <h2 data-aos="fade-right" class="text-3xl font-extrabold text-slate-800 mb-6">Quyền sử dụng</h2>
             
@@ -108,7 +100,7 @@
                     </div>
                     <div>
                         <div class="flex flex-wrap gap-2 mb-2">
-                            <span class="bg-emerald-50 text-emerald-600 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-emerald-100 uppercase tracking-wider">
+                            <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-emerald-100 uppercase tracking-wider">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Đã đăng nhập
                             </span>
                         </div>
@@ -118,56 +110,55 @@
                 </div>
 
                 <div class="flex flex-wrap gap-3 mb-8">
-                    <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-bold py-2.5 px-5 rounded-xl flex items-center gap-2 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Tải app
-                    </button>
-                    <button class="bg-white border-2 border-slate-100 text-slate-700 text-sm font-bold py-2.5 px-5 rounded-xl flex items-center gap-2 hover:border-blue-200 hover:text-blue-600 transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Làm mới
-                    </button>
-                    <button onclick="handleLogout()" class="bg-white border-2 border-slate-100 text-slate-700 text-sm font-bold py-2.5 px-5 rounded-xl flex items-center gap-2 hover:border-red-200 hover:text-red-500 transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> Đăng xuất
-                    </button>
+                    <button class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-bold py-2.5 px-5 rounded-xl flex items-center gap-2 hover:shadow-lg transition-all">Tải app</button>
+                    <button onclick="handleLogout()" class="bg-white border-2 border-slate-100 text-slate-700 text-sm font-bold py-2.5 px-5 rounded-xl flex items-center gap-2 hover:border-red-200 hover:text-red-500 transition-colors">Đăng xuất</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-shadow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg></div>
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Hôm nay</p>
-                        </div>
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Hôm nay</p>
                         <p class="text-lg font-bold text-slate-800">60 phút miễn phí</p>
                     </div>
-                    
-                    <div class="bg-blue-50/50 rounded-2xl p-5 border border-blue-100 hover:shadow-md hover:shadow-blue-500/10 transition-shadow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                            <p class="text-xs font-bold text-blue-500 uppercase tracking-wider">Phút còn lại</p>
-                        </div>
-                        <p class="text-lg font-bold text-slate-800">60 phút + <span id="wallet-balance" class="text-blue-600 font-extrabold">0 phút</span> ví phút</p>
+                    <div class="bg-blue-50/50 rounded-2xl p-5 border border-blue-100">
+                        <p class="text-xs font-bold text-blue-500 uppercase tracking-wider">Phút còn lại</p>
+                        <p class="text-lg font-bold text-slate-800">60 phút + <span id="wallet-balance" class="text-blue-600 font-extrabold">0</span> ví phút</p>
                     </div>
-                    
-                    <!-- Khối mới: Số Dư VNĐ -->
-                    <div class="bg-green-50/50 rounded-2xl p-5 border border-green-100 hover:shadow-md hover:shadow-green-500/10 transition-shadow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <p class="text-xs font-bold text-green-600 uppercase tracking-wider">Số dư VNĐ</p>
-                        </div>
-                        <p class="text-xl font-bold text-slate-800"><span id="account-money-balance">0</span> <span class="text-sm font-normal text-slate-500">đ</span></p>
-                    </div>
-
-                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-shadow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Thiết bị</p>
-                        </div>
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Thiết bị</p>
                         <p class="text-lg font-bold text-slate-800">1 thiết bị</p>
+                    </div>
+                </div>
+
+                <!-- BẢNG LỊCH SỬ GIAO DỊCH -->
+                <div class="mt-10 pt-8 border-t border-slate-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">Lịch sử giao dịch</h3>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left whitespace-nowrap">
+                                <thead class="bg-slate-100/50 border-b border-slate-100 text-slate-500 text-sm">
+                                    <tr>
+                                        <th class="py-4 px-5 font-semibold">Vật phẩm</th>
+                                        <th class="py-4 px-5 font-semibold">Giá trị</th>
+                                        <th class="py-4 px-5 font-semibold">Thời gian</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="history-table-body">
+                                    <!-- Render lịch sử bằng JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="no-history-msg" class="hidden py-8 text-center text-slate-500 font-medium">Bạn chưa thực hiện giao dịch nào.</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Nạp phút -->
+            <!-- NẠP PHÚT HOẶC UNLIMITED -->
             <div data-aos="fade-up" class="mt-12">
                 <div class="flex flex-col gap-1 mb-8">
                     <p class="text-blue-600 text-sm font-bold uppercase tracking-wider">Bảng giá tài khoản</p>
@@ -175,49 +166,58 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Gói Mini -->
                     <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-1 relative group">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full mix-blend-multiply opacity-50 group-hover:scale-110 transition-transform"></div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Mini</h3>
                         <p class="text-4xl font-black text-slate-900 mb-2">20.000<span class="text-xl text-slate-500 ml-1">đ</span></p>
                         <p class="text-slate-500 font-medium mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 200 phút sử dụng</p>
-                        <button class="mt-6 w-full bg-slate-50 border-2 border-slate-100 text-slate-800 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-300">Mua gói ngay</button>
+                        <button onclick="handleBuyPackage(20000, 200, 'Gói Mini (200 phút)')" class="mt-6 w-full bg-slate-50 border-2 border-slate-100 text-slate-800 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-300">
+                            Mua gói ngay
+                        </button>
                     </div>
 
+                    <!-- Gói Starter -->
                     <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 rounded-3xl p-8 border border-slate-800 shadow-xl shadow-blue-900/20 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 relative group overflow-hidden">
                         <div class="absolute -top-4 -right-4 w-32 h-32 bg-blue-500 rounded-full mix-blend-screen opacity-20 filter blur-xl group-hover:scale-125 transition-transform duration-500"></div>
                         <h3 class="text-xl font-bold text-blue-200 mb-2">Starter</h3>
                         <p class="text-4xl font-black text-white mb-2">50.000<span class="text-xl text-blue-300 ml-1">đ</span></p>
                         <p class="text-blue-100 font-medium mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 550 phút sử dụng</p>
-                        <button class="mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-500/40 transition-all duration-300">Mua gói ngay</button>
+                        <button onclick="handleBuyPackage(50000, 550, 'Gói Starter (550 phút)')" class="mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-500/40 transition-all duration-300">
+                            Mua gói ngay
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- CUSTOM POPUP MODAL (THÔNG BÁO ĐẸP & XINH) -->
+    <div id="custom-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+        <!-- Nền mờ -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <!-- Hộp thoại -->
+        <div id="modal-content" class="relative bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
+            <div id="modal-icon" class="w-20 h-20 text-4xl rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg transform -translate-y-6 border-4 border-white"></div>
+            <h3 id="modal-title" class="text-2xl font-extrabold text-center mb-3"></h3>
+            <div id="modal-message" class="text-slate-600 text-sm mb-6 flex flex-col gap-2"></div>
+            <button onclick="closeModal()" id="modal-btn" class="w-full font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:-translate-y-0.5">Tuyệt vời!</button>
+        </div>
+    </div>
+
     <!-- Thư viện AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 600 });
 
+        // LOGIC CHUNG UI
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('ae_is_logged_in');
-            
             if (isLoggedIn === 'true') {
                 const savedData = localStorage.getItem('ae_user_account');
                 if (savedData) {
                     const user = JSON.parse(savedData);
-                    document.getElementById('dashboard-email').innerText = user.email;
-                    document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
-                    
-                    document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
-                    // HIỂN THỊ SỐ TIỀN VNĐ
-                    document.getElementById('account-money-balance').innerText = (user.balance || 0).toLocaleString('vi-VN');
-                    
-                    document.getElementById('auth-section').classList.remove('block');
-                    document.getElementById('auth-section').classList.add('hidden');
-                    document.getElementById('dashboard-section').classList.remove('hidden');
-                    document.getElementById('dashboard-section').classList.add('block');
+                    loadDashboardUI(user);
                 }
             }
         });
@@ -226,36 +226,68 @@
             event.stopPropagation();
             document.getElementById('dropdown-menu').classList.toggle('hidden');
         }
-        window.onclick = function(event) {
-            const dropdown = document.getElementById('dropdown-menu');
-            const button = document.getElementById('menu-button');
-            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-                dropdown.classList.add('hidden');
-            }
-        }
 
         function switchTab(tabType) {
             const btnLogin = document.getElementById('btn-tab-login');
             const btnRegister = document.getElementById('btn-tab-register');
             const formLogin = document.getElementById('login-form');
             const formRegister = document.getElementById('register-form');
-            const extraLinks = document.getElementById('extra-links');
 
             if (tabType === 'login') {
                 btnLogin.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnRegister.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
                 formLogin.classList.remove('hidden'); formLogin.classList.add('block');
                 formRegister.classList.remove('block'); formRegister.classList.add('hidden');
-                extraLinks.classList.remove('hidden'); extraLinks.classList.add('flex');
             } else {
                 btnRegister.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnLogin.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
                 formRegister.classList.remove('hidden'); formRegister.classList.add('block');
                 formLogin.classList.remove('block'); formLogin.classList.add('hidden');
-                extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
             }
         }
 
+        // HÀM HIỂN THỊ THÔNG BÁO MODAL
+        function showModal(type, title, messages) {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            const iconBox = document.getElementById('modal-icon');
+            const titleEl = document.getElementById('modal-title');
+            const messageEl = document.getElementById('modal-message');
+            const btnEl = document.getElementById('modal-btn');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            titleEl.innerText = title;
+            messageEl.innerHTML = messages.join('');
+
+            if (type === 'success') {
+                iconBox.innerHTML = '🎉';
+                iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/40 text-white transform -translate-y-8 border-4 border-white';
+                titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-emerald-600';
+                btnEl.className = 'w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-green-500/30 hover:-translate-y-0.5';
+                btnEl.innerText = "Tuyệt vời!";
+            } else {
+                iconBox.innerHTML = '😢';
+                iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-500/40 text-white transform -translate-y-8 border-4 border-white';
+                titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-rose-600';
+                btnEl.className = 'w-full bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-red-500/30 hover:-translate-y-0.5';
+                btnEl.innerText = "Đã hiểu";
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        // ĐĂNG KÝ, ĐĂNG NHẬP, LOAD BẢNG
         function handleRegister(event) {
             event.preventDefault();
             const email = document.getElementById('reg-email').value;
@@ -263,14 +295,12 @@
             const confirmPassword = document.getElementById('reg-confirm').value;
 
             if (password !== confirmPassword) {
-                alert("Mật khẩu xác nhận không khớp! Vui lòng nhập lại.");
-                return;
+                showModal('error', 'Lỗi đăng ký', ['<p class="text-center">Mật khẩu xác nhận không khớp!</p>']); return;
             }
-
-            const userData = { email: email, password: password, walletMinutes: 0, balance: 0 };
+            const userData = { email: email, password: password, walletMinutes: 0, balance: 0, totalSpent: 0, purchaseHistory: [] };
             localStorage.setItem('ae_user_account', JSON.stringify(userData));
             
-            alert("Đăng ký tài khoản thành công! Vui lòng đăng nhập để sử dụng.");
+            showModal('success', 'Thành công', ['<p class="text-center">Tạo tài khoản thành công! Bạn có thể đăng nhập ngay.</p>']);
             document.getElementById('register-form').reset();
             switchTab('login');
         }
@@ -279,35 +309,55 @@
             event.preventDefault(); 
             const emailInput = document.getElementById('login-email').value;
             const passwordInput = document.getElementById('login-password').value;
-
             const savedData = localStorage.getItem('ae_user_account');
 
             if (savedData) {
                 const user = JSON.parse(savedData);
-                
                 if (user.email === emailInput && user.password === passwordInput) {
                     localStorage.setItem('ae_is_logged_in', 'true');
-
-                    document.getElementById('dashboard-email').innerText = user.email;
-                    document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
-                    
-                    document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
-                    // HIỂN THỊ SỐ TIỀN VNĐ
-                    document.getElementById('account-money-balance').innerText = (user.balance || 0).toLocaleString('vi-VN');
-
-                    document.getElementById('auth-section').classList.remove('block');
-                    document.getElementById('auth-section').classList.add('hidden');
-                    document.getElementById('dashboard-section').classList.remove('hidden');
-                    document.getElementById('dashboard-section').classList.add('block');
-                    
-                    AOS.refreshHard();
-                    window.scrollTo(0, 0); 
+                    loadDashboardUI(user);
                 } else {
-                    alert("Sai email hoặc mật khẩu. Vui lòng kiểm tra lại!");
+                    showModal('error', 'Đăng nhập thất bại', ['<p class="text-center">Sai email hoặc mật khẩu. Vui lòng thử lại!</p>']);
                 }
             } else {
-                alert("Hệ thống chưa có tài khoản nào được đăng ký. Vui lòng tạo tài khoản mới!");
+                showModal('error', 'Chưa đăng ký', ['<p class="text-center">Hệ thống chưa có tài khoản nào được đăng ký.</p>']);
             }
+        }
+
+        function loadDashboardUI(user) {
+            document.getElementById('dashboard-email').innerText = user.email;
+            document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
+            
+            // Cập nhật số phút trên giao diện ngay lập tức
+            document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
+
+            // Render bảng lịch sử
+            const tbody = document.getElementById('history-table-body');
+            const noMsg = document.getElementById('no-history-msg');
+            tbody.innerHTML = '';
+
+            if (!user.purchaseHistory || user.purchaseHistory.length === 0) {
+                noMsg.classList.remove('hidden');
+            } else {
+                noMsg.classList.add('hidden');
+                const reversedHistory = [...user.purchaseHistory].reverse();
+                reversedHistory.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-slate-100 hover:bg-slate-50 transition-colors";
+                    tr.innerHTML = `
+                        <td class="py-4 px-5 text-sm font-semibold text-slate-800">${item.name}</td>
+                        <td class="py-4 px-5 text-sm font-bold text-red-500">-${item.price.toLocaleString('vi-VN')}đ</td>
+                        <td class="py-4 px-5 text-xs text-slate-500">${item.date}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            document.getElementById('auth-section').classList.remove('block');
+            document.getElementById('auth-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            document.getElementById('dashboard-section').classList.add('block');
+            AOS.refreshHard();
         }
 
         function handleLogout() {
@@ -318,7 +368,49 @@
             document.getElementById('auth-section').classList.add('block');
             document.getElementById('login-form').reset();
             switchTab('login');
-            AOS.refreshHard();
+        }
+
+        // HÀM XỬ LÝ KHI BẤM MUA GÓI PHÚT
+        function handleBuyPackage(price, minutes, packageName) {
+            const savedData = localStorage.getItem('ae_user_account');
+            if (!savedData) return;
+            let user = JSON.parse(savedData);
+            let currentBalance = user.balance || 0;
+
+            if (currentBalance >= price) {
+                // Đủ tiền -> Trừ tiền & Cộng phút & Cộng tổng tiêu
+                user.balance = currentBalance - price;
+                user.walletMinutes = (user.walletMinutes || 0) + minutes;
+                user.totalSpent = (user.totalSpent || 0) + price;
+
+                // Ghi vào lịch sử giao dịch
+                if(!user.purchaseHistory) user.purchaseHistory = [];
+                const now = new Date();
+                const dateStr = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) + ' - ' + now.toLocaleDateString('vi-VN');
+                user.purchaseHistory.push({ name: packageName, price: price, date: dateStr });
+
+                // Lưu lại vào trình duyệt
+                localStorage.setItem('ae_user_account', JSON.stringify(user));
+
+                // Load lại bảng thông số trên màn hình ngay lập tức
+                loadDashboardUI(user);
+
+                // Hiển thị Popup Xinh đẹp
+                showModal('success', 'Nạp phút thành công!', [
+                    `<div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-2 space-y-2">`,
+                    `<div class="flex justify-between"><span class="text-slate-500">Gói nạp:</span> <strong class="text-slate-800 text-right line-clamp-1">${packageName}</strong></div>`,
+                    `<div class="flex justify-between"><span class="text-slate-500">Thanh toán:</span> <strong class="text-rose-500">-${price.toLocaleString('vi-VN')}đ</strong></div>`,
+                    `<div class="flex justify-between"><span class="text-slate-500">Phút nhận được:</span> <strong class="text-blue-600">+${minutes} phút</strong></div>`,
+                    `</div>`,
+                    `<div class="flex justify-between px-2 mb-2"><span class="text-slate-500 font-semibold">Số dư VNĐ còn lại:</span> <strong class="text-emerald-600 text-lg">${user.balance.toLocaleString('vi-VN')}đ</strong></div>`
+                ]);
+            } else {
+                // Thiếu tiền
+                showModal('error', 'Hết tiền rồi!', [
+                    `<p class="text-center mb-3">Tài khoản của bạn hiện có <strong>${currentBalance.toLocaleString('vi-VN')}đ</strong>, không đủ để mua gói này.</p>`,
+                    `<div class="p-3 bg-red-50 text-red-600 rounded-xl text-xs font-medium text-center border border-red-100">Vui lòng liên hệ Admin nạp thêm tiền để tiếp tục nha!</div>`
+                ]);
+            }
         }
     </script>
 </body>
