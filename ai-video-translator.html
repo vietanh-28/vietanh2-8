@@ -17,7 +17,7 @@
 </head>
 <body class="bg-grid-pattern text-slate-800 relative">
 
-    <!-- Header Glassmorphism -->
+    <!-- Header -->
     <header class="sticky top-0 z-40 backdrop-blur-md bg-white/70 border-b border-slate-200/50 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
@@ -34,8 +34,6 @@
     </header>
 
     <main class="max-w-6xl mx-auto p-4 mt-8 pb-20">
-        
-        <!-- Breadcrumb -->
         <nav data-aos="fade-right" class="text-sm text-slate-500 mb-6 flex items-center gap-2">
             <a href="index.html" class="hover:text-blue-600 transition-colors">Trang chủ</a>
             <span>/</span>
@@ -46,7 +44,6 @@
 
         <!-- Product Block -->
         <div data-aos="fade-up" class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 flex flex-col md:flex-row gap-10">
-            
             <!-- Cột trái: Ảnh -->
             <div class="md:w-3/5 group cursor-pointer relative rounded-2xl overflow-hidden">
                 <div class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none rounded-2xl"></div>
@@ -69,10 +66,9 @@
                 
                 <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                     <p class="text-sm text-slate-500 mb-1">Giá thanh toán</p>
-                    <p class="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 drop-shadow-sm">299,000đ<span class="text-2xl underline ml-1 text-indigo-600">đ</span></p>
+                    <p class="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 drop-shadow-sm">10,000<span class="text-2xl underline ml-1 text-indigo-600">đ</span></p>
                 </div>
 
-                <!-- Input Coupon -->
                 <div class="mb-6 relative">
                     <input type="text" placeholder="Nhập mã giảm giá (nếu có)..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-700">
                     <button class="absolute right-2 top-2 bottom-2 bg-slate-900 text-white px-4 rounded-lg text-sm font-semibold hover:bg-slate-800 transition-colors">Áp dụng</button>
@@ -80,8 +76,7 @@
 
                 <!-- Buttons -->
                 <div class="flex flex-col gap-4 mt-auto">
-                    <!-- Nút thanh toán đã gắn hàm xử lý JavaScript -->
-                    <button onclick="handlePurchase(299000, 'AI Video Translator Pro')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center text-lg">
+                    <button onclick="handlePurchase(10000, 'AI Video Translator Pro')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center text-lg">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         Thanh Toán Ngay
                     </button>
@@ -94,7 +89,6 @@
             </div>
         </div>
 
-        <!-- Description -->
         <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 mt-8">
             <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
                 <div class="p-2 bg-blue-50 rounded-lg text-blue-600">
@@ -111,65 +105,147 @@
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Tự động Render lồng tiếng xuất thẳng ra file MP4 chuẩn HD.</span></li>
                     <li class="flex items-center gap-2"><svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Tùy chỉnh sub, màu chữ, viền đen cực kỳ dễ dàng trên giao diện.</span></li>
                 </ul>
-                <div class="bg-red-50 text-red-700 p-4 rounded-xl border border-red-100 flex items-start gap-3">
-                    <svg class="w-6 h-6 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    <p class="font-medium text-base">Lưu ý: Tool tự động trừ tiền vào Số dư VNĐ trong tài khoản của bạn. Vui lòng nhắn tin cho Admin sau khi thanh toán để nhận File Setup & License Key.</p>
-                </div>
             </div>
         </div>
     </main>
 
-    <!-- JS XỬ LÝ THANH TOÁN MUA HÀNG -->
+    <!-- ========================================== -->
+    <!-- CUSTOM POPUP MODAL (THÔNG BÁO ĐẸP & XINH) -->
+    <!-- ========================================== -->
+    <div id="custom-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+        <!-- Nền mờ -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Hộp thoại -->
+        <div id="modal-content" class="relative bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
+            <!-- Khu vực Icon Emoji -->
+            <div id="modal-icon" class="w-20 h-20 text-4xl rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg transform -translate-y-6 border-4 border-white"></div>
+            
+            <!-- Tiêu đề -->
+            <h3 id="modal-title" class="text-2xl font-extrabold text-center mb-3"></h3>
+            
+            <!-- Nội dung thông báo -->
+            <div id="modal-message" class="text-slate-600 text-sm mb-6 flex flex-col gap-2"></div>
+            
+            <!-- Nút xác nhận -->
+            <button onclick="closeModal()" id="modal-btn" class="w-full font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+                Tuyệt vời!
+            </button>
+        </div>
+    </div>
+
+    <!-- JS XỬ LÝ THANH TOÁN VÀ HIỂN THỊ MODAL -->
     <script>
+        let redirectAfterClose = null; // Biến lưu URL chuyển hướng (nếu cần)
+
+        // HÀM HIỂN THỊ THÔNG BÁO MODAL
+        function showModal(type, title, messages, redirectUrl = null) {
+            redirectAfterClose = redirectUrl;
+
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            const iconBox = document.getElementById('modal-icon');
+            const titleEl = document.getElementById('modal-title');
+            const messageEl = document.getElementById('modal-message');
+            const btnEl = document.getElementById('modal-btn');
+
+            modal.classList.remove('hidden');
+            
+            // Hiệu ứng zoom in
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            titleEl.innerText = title;
+            messageEl.innerHTML = messages.join('');
+
+            if (type === 'success') {
+                iconBox.innerHTML = '🎉';
+                iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/40 text-white transform -translate-y-8 border-4 border-white';
+                titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-emerald-600';
+                btnEl.className = 'w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-green-500/30 hover:-translate-y-0.5';
+                btnEl.innerText = "Xác nhận";
+            } else {
+                iconBox.innerHTML = '😢';
+                iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-500/40 text-white transform -translate-y-8 border-4 border-white';
+                titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-rose-600';
+                btnEl.className = 'w-full bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-red-500/30 hover:-translate-y-0.5';
+                btnEl.innerText = "Đã hiểu";
+            }
+        }
+
+        // HÀM ĐÓNG MODAL
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                // Nếu có yêu cầu chuyển trang thì thực hiện
+                if (redirectAfterClose) {
+                    window.location.href = redirectAfterClose;
+                }
+            }, 300);
+        }
+
+        // HÀM THANH TOÁN
         function handlePurchase(price, productName) {
-            // 1. Kiểm tra xem người dùng đã đăng nhập chưa
             const isLoggedIn = localStorage.getItem('ae_is_logged_in');
+            
+            // Xử lý chưa đăng nhập
             if (isLoggedIn !== 'true') {
-                alert('Vui lòng đăng nhập tài khoản để thực hiện thanh toán!');
-                // Chuyển hướng người dùng về trang đăng nhập
-                window.location.href = 'account.html';
+                showModal('error', 'Chưa đăng nhập!', [
+                    '<p class="text-center">Bạn cần đăng nhập tài khoản trước khi mua hàng nhé.</p>'
+                ], 'account.html'); // Chuyển tới account.html sau khi đóng
                 return;
             }
 
-            // 2. Lấy thông tin tài khoản người dùng từ hệ thống ảo
             const savedData = localStorage.getItem('ae_user_account');
-            if (!savedData) {
-                alert('Lỗi dữ liệu tài khoản, vui lòng đăng nhập lại!');
-                return;
-            }
+            if (!savedData) return;
 
             let user = JSON.parse(savedData);
             let currentBalance = user.balance || 0;
 
-            // 3. Xử lý trừ tiền
             if (currentBalance >= price) {
-                // Thỏa mãn điều kiện -> Tiến hành trừ tiền
+                // Đủ tiền -> Trừ tiền
                 user.balance = currentBalance - price;
+                user.totalSpent = (user.totalSpent || 0) + price;
                 
-                // Lưu lại thông tin mua hàng vào tài khoản
-                if(!user.purchased) user.purchased = [];
-                user.purchased.push(productName);
+                // Lưu lịch sử
+                if(!user.purchaseHistory) user.purchaseHistory = [];
+                const now = new Date();
+                const dateStr = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) + ' - ' + now.toLocaleDateString('vi-VN');
+                user.purchaseHistory.push({ name: productName, price: price, date: dateStr });
 
-                // Cập nhật lên LocalStorage
                 localStorage.setItem('ae_user_account', JSON.stringify(user));
 
-                // Hiệu ứng tăng số lượng đã bán (ảo)
                 let soldEl = document.getElementById('sold-count');
                 soldEl.innerText = parseInt(soldEl.innerText) + 1;
 
-                // Thông báo thành công
-                alert(`Thanh toán thành công [${productName}]!\n\nSố dư tài khoản bị trừ: -${price.toLocaleString('vi-VN')}đ.\nSố dư còn lại: ${user.balance.toLocaleString('vi-VN')}đ.\n\nVui lòng nhắn tin cho Admin để nhận File và Key kích hoạt.`);
+                // THÔNG BÁO THÀNH CÔNG RẤT XINH
+                showModal('success', 'Chốt đơn thành công!', [
+                    `<div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-2 space-y-2">`,
+                    `<div class="flex justify-between"><span class="text-slate-500">Sản phẩm:</span> <strong class="text-slate-800 text-right line-clamp-1">${productName}</strong></div>`,
+                    `<div class="flex justify-between"><span class="text-slate-500">Thanh toán:</span> <strong class="text-rose-500">-${price.toLocaleString('vi-VN')}đ</strong></div>`,
+                    `</div>`,
+                    `<div class="flex justify-between px-2 mb-2"><span class="text-slate-500 font-semibold">Số dư còn lại:</span> <strong class="text-emerald-600 text-lg">${user.balance.toLocaleString('vi-VN')}đ</strong></div>`,
+                    `<div class="mt-3 p-3 bg-blue-50/80 text-blue-700 rounded-xl text-xs font-medium text-center border border-blue-100">✨ Hãy nhắn tin cho Admin để nhận File và Key nhé!</div>`
+                ]);
+
             } else {
-                // Không đủ tiền
-                alert(`Thanh toán thất bại!\n\nSố dư của bạn (${currentBalance.toLocaleString('vi-VN')}đ) không đủ để mua sản phẩm này (${price.toLocaleString('vi-VN')}đ).\n\nVui lòng liên hệ Admin để nạp thêm tiền vào tài khoản.`);
+                // Lỗi Không đủ tiền
+                showModal('error', 'Hết tiền rồi!', [
+                    `<p class="text-center mb-3">Tài khoản của bạn hiện có <strong>${currentBalance.toLocaleString('vi-VN')}đ</strong>, không đủ để mua sản phẩm này.</p>`,
+                    `<div class="p-3 bg-red-50 text-red-600 rounded-xl text-xs font-medium text-center border border-red-100">Vui lòng nạp thêm tiền để tiếp tục nha!</div>`
+                ]);
             }
         }
     </script>
-
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true, duration: 800 });
-    </script>
+    <script>AOS.init({ once: true, duration: 800 });</script>
 </body>
 </html>
