@@ -12,7 +12,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        /* Nền chấm bi giống hệt trang chủ */
         .bg-grid-pattern { background-image: radial-gradient(#e2e8f0 1px, transparent 1px); background-size: 20px 20px; }
     </style>
 </head>
@@ -22,7 +21,6 @@
     <header class="sticky top-0 z-40 backdrop-blur-md bg-white/70 border-b border-slate-200/50 shadow-sm transition-all duration-300">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center relative">
             <div class="flex items-center gap-3 cursor-pointer">
-                <!-- Logo đổi sang gradient xanh giống trang chủ -->
                 <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
                     <span class="text-white font-bold text-sm">AE</span>
                 </div>
@@ -30,7 +28,6 @@
                 <span class="text-lg font-bold text-slate-800 block sm:hidden">Hệ thống AE</span>
             </div>
             
-            <!-- Menu 3 gạch & Dropdown -->
             <div class="relative">
                 <button id="menu-button" onclick="toggleMenu(event)" class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all bg-white shadow-sm">
                     <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +35,6 @@
                     </svg>
                 </button>
                 
-                <!-- Dropdown Menu (Ẩn mặc định) -->
                 <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 transform origin-top-right transition-all">
                     <a href="index.html" class="px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-600 font-medium flex items-center gap-3 transition-colors">
                         <div class="p-1.5 bg-blue-100 rounded-md text-blue-600">
@@ -53,11 +49,8 @@
 
     <main class="max-w-4xl mx-auto mt-8 px-4 pb-20">
         
-        <!-- ========================================== -->
         <!-- PHẦN 1: FORM ĐĂNG NHẬP / ĐĂNG KÝ -->
-        <!-- ========================================== -->
         <div id="auth-section" data-aos="zoom-in" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 block relative overflow-hidden">
-            <!-- Vòng trang trí làm mềm Form -->
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 pointer-events-none"></div>
 
             <p class="text-xs font-bold text-blue-500 tracking-wider mb-2 uppercase">Tài khoản</p>
@@ -69,21 +62,21 @@
                 Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>. Nếu chưa có tài khoản, vui lòng đăng ký.
             </p>
 
-            <!-- Tabs Đăng nhập / Đăng ký -->
+            <!-- Tabs -->
             <div class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
                 <button id="btn-tab-login" onclick="switchTab('login')" class="w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300">Đăng nhập</button>
                 <button id="btn-tab-register" onclick="switchTab('register')" class="w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300">Đăng ký</button>
             </div>
 
-            <!-- 1. Form Đăng nhập -->
-            <form id="login-form" onsubmit="handleAuth(event)" class="block">
+            <!-- Form Đăng nhập -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="block">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email tài khoản</label>
-                    <input type="email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
+                    <input type="email" id="login-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Mật khẩu</label>
-                    <input type="password" placeholder="Mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
+                    <input type="password" id="login-password" placeholder="Mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
                 </div>
 
                 <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5">
@@ -91,19 +84,19 @@
                 </button>
             </form>
 
-            <!-- 2. Form Đăng ký (Ẩn mặc định) -->
-            <form id="register-form" onsubmit="handleAuth(event)" class="hidden">
+            <!-- Form Đăng ký -->
+            <form id="register-form" onsubmit="handleRegister(event)" class="hidden">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email của bạn</label>
-                    <input type="email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
+                    <input type="email" id="reg-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Mật khẩu</label>
-                    <input type="password" placeholder="Tạo mật khẩu (Ít nhất 6 ký tự)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
+                    <input type="password" id="reg-password" placeholder="Tạo mật khẩu (Ít nhất 6 ký tự)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Nhập lại mật khẩu</label>
-                    <input type="password" placeholder="Xác nhận mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
+                    <input type="password" id="reg-confirm" placeholder="Xác nhận mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
                 </div>
 
                 <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-slate-900/20 mb-5">
@@ -111,7 +104,7 @@
                 </button>
             </form>
 
-            <!-- Khối link phụ trợ (Quên MK / Chuyển sang ĐK) -->
+            <!-- Khối link phụ trợ -->
             <div id="extra-links" class="flex flex-col gap-4 block border-t border-slate-100 pt-5">
                 <button class="flex items-center justify-center gap-2 border border-slate-200 bg-white rounded-full py-2 px-4 text-sm font-semibold text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 w-max transition-all duration-300">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
@@ -121,9 +114,7 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- PHẦN 2 & 3: DASHBOARD VÀ BẢNG GIÁ -->
-        <!-- ========================================== -->
+        <!-- PHẦN 2 & 3: DASHBOARD -->
         <div id="dashboard-section" class="hidden">
             <h2 data-aos="fade-right" class="text-3xl font-extrabold text-slate-800 mb-6">Quyền sử dụng</h2>
             
@@ -131,19 +122,17 @@
                 <!-- Header User -->
                 <div class="flex items-start gap-4 mb-8">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center flex-shrink-0 text-white text-2xl font-bold shadow-md">
-                        A
+                        <span id="user-avatar-text">A</span>
                     </div>
                     <div>
                         <div class="flex flex-wrap gap-2 mb-2">
                             <span class="bg-emerald-50 text-emerald-600 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-emerald-100 uppercase tracking-wider">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Đã đăng nhập
                             </span>
-                            <span class="bg-emerald-50 text-emerald-600 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-emerald-100 uppercase tracking-wider">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Có hiệu lực
-                            </span>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-800">aexuattinhsom</h3>
-                        <p class="text-slate-500 text-sm">user@aexuattinhsom.center</p>
+                        <!-- Sẽ thay đổi email dựa vào tài khoản lúc đăng nhập -->
+                        <p id="dashboard-email" class="text-slate-500 text-sm">user@aexuattinhsom.center</p>
                     </div>
                 </div>
 
@@ -185,14 +174,6 @@
                         </div>
                         <p class="text-lg font-bold text-slate-800">1 thiết bị</p>
                     </div>
-                    
-                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-shadow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></div>
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Máy đang dùng</p>
-                        </div>
-                        <p class="text-lg font-bold text-slate-800">Windows · App 0.1.107</p>
-                    </div>
                 </div>
             </div>
 
@@ -210,9 +191,7 @@
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Mini</h3>
                         <p class="text-4xl font-black text-slate-900 mb-2">20.000<span class="text-xl text-slate-500 ml-1">đ</span></p>
                         <p class="text-slate-500 font-medium mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 200 phút sử dụng</p>
-                        <p class="text-blue-600 font-bold text-sm mb-8 bg-blue-50 w-max px-3 py-1 rounded-lg">~100đ / phút</p>
-                        <button class="w-full bg-slate-50 border-2 border-slate-100 text-slate-800 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        <button class="mt-6 w-full bg-slate-50 border-2 border-slate-100 text-slate-800 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-300">
                             Mua gói ngay
                         </button>
                     </div>
@@ -223,9 +202,7 @@
                         <h3 class="text-xl font-bold text-blue-200 mb-2">Starter</h3>
                         <p class="text-4xl font-black text-white mb-2">50.000<span class="text-xl text-blue-300 ml-1">đ</span></p>
                         <p class="text-blue-100 font-medium mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 550 phút sử dụng</p>
-                        <p class="text-white font-bold text-sm mb-8 bg-white/10 w-max px-3 py-1 rounded-lg backdrop-blur-sm">~91đ / phút</p>
-                        <button class="w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-500/40 transition-all duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        <button class="mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-500/40 transition-all duration-300">
                             Mua gói ngay
                         </button>
                     </div>
@@ -237,17 +214,13 @@
     <!-- Thư viện AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Khởi tạo hoạt ảnh
         AOS.init({ once: true, duration: 600 });
 
-        // Script Mở/Đóng Menu Dropdown
+        // Menu Dropdown
         function toggleMenu(event) {
-            event.stopPropagation(); // Ngăn chặn sự kiện click lan ra body
-            const dropdown = document.getElementById('dropdown-menu');
-            dropdown.classList.toggle('hidden');
+            event.stopPropagation();
+            document.getElementById('dropdown-menu').classList.toggle('hidden');
         }
-
-        // Đóng menu nếu bấm ra ngoài vùng menu
         window.onclick = function(event) {
             const dropdown = document.getElementById('dropdown-menu');
             const button = document.getElementById('menu-button');
@@ -256,7 +229,7 @@
             }
         }
 
-        // Script Chuyển Tab (Đăng Nhập / Đăng Ký)
+        // Chuyển Tab
         function switchTab(tabType) {
             const btnLogin = document.getElementById('btn-tab-login');
             const btnRegister = document.getElementById('btn-tab-register');
@@ -267,43 +240,78 @@
             if (tabType === 'login') {
                 btnLogin.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnRegister.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
-                
-                formLogin.classList.remove('hidden');
-                formLogin.classList.add('block');
-                formRegister.classList.remove('block');
-                formRegister.classList.add('hidden');
-                
-                extraLinks.classList.remove('hidden');
-                extraLinks.classList.add('flex');
+                formLogin.classList.remove('hidden'); formLogin.classList.add('block');
+                formRegister.classList.remove('block'); formRegister.classList.add('hidden');
+                extraLinks.classList.remove('hidden'); extraLinks.classList.add('flex');
             } else {
                 btnRegister.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnLogin.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
-                
-                formRegister.classList.remove('hidden');
-                formRegister.classList.add('block');
-                formLogin.classList.remove('block');
-                formLogin.classList.add('hidden');
-                
-                extraLinks.classList.remove('flex');
-                extraLinks.classList.add('hidden');
+                formRegister.classList.remove('hidden'); formRegister.classList.add('block');
+                formLogin.classList.remove('block'); formLogin.classList.add('hidden');
+                extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
             }
         }
 
-        // Script Đăng nhập / Đăng ký ảo
-        function handleAuth(event) {
-            event.preventDefault(); 
-            document.getElementById('auth-section').classList.remove('block');
-            document.getElementById('auth-section').classList.add('hidden');
+        // 1. XỬ LÝ ĐĂNG KÝ
+        function handleRegister(event) {
+            event.preventDefault();
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm').value;
+
+            // Kiểm tra mật khẩu khớp nhau
+            if (password !== confirmPassword) {
+                alert("Mật khẩu xác nhận không khớp! Vui lòng nhập lại.");
+                return;
+            }
+
+            // Lưu dữ liệu vào LocalStorage (Giả lập Database)
+            const userData = { email: email, password: password };
+            localStorage.setItem('ae_user_account', JSON.stringify(userData));
             
-            document.getElementById('dashboard-section').classList.remove('hidden');
-            document.getElementById('dashboard-section').classList.add('block');
+            alert("Đăng ký tài khoản thành công! Vui lòng đăng nhập để sử dụng.");
             
-            // Refresh lại hoạt ảnh AOS cho dashboard
-            AOS.refreshHard();
-            window.scrollTo(0, 0); 
+            // Xóa form và chuyển về tab đăng nhập
+            document.getElementById('register-form').reset();
+            switchTab('login');
         }
 
-        // Script Đăng xuất
+        // 2. XỬ LÝ ĐĂNG NHẬP
+        function handleLogin(event) {
+            event.preventDefault(); 
+            const emailInput = document.getElementById('login-email').value;
+            const passwordInput = document.getElementById('login-password').value;
+
+            // Lấy dữ liệu đã lưu từ LocalStorage
+            const savedData = localStorage.getItem('ae_user_account');
+
+            if (savedData) {
+                const user = JSON.parse(savedData);
+                
+                // So sánh Email và Mật khẩu
+                if (user.email === emailInput && user.password === passwordInput) {
+                    
+                    // Thành công: Cập nhật Email lên Dashboard
+                    document.getElementById('dashboard-email').innerText = user.email;
+                    document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
+
+                    // Ẩn form, hiện Dashboard
+                    document.getElementById('auth-section').classList.remove('block');
+                    document.getElementById('auth-section').classList.add('hidden');
+                    document.getElementById('dashboard-section').classList.remove('hidden');
+                    document.getElementById('dashboard-section').classList.add('block');
+                    
+                    AOS.refreshHard();
+                    window.scrollTo(0, 0); 
+                } else {
+                    alert("Sai email hoặc mật khẩu. Vui lòng kiểm tra lại!");
+                }
+            } else {
+                alert("Hệ thống chưa có tài khoản nào được đăng ký. Vui lòng tạo tài khoản mới!");
+            }
+        }
+
+        // 3. XỬ LÝ ĐĂNG XUẤT
         function handleLogout() {
             document.getElementById('dashboard-section').classList.remove('block');
             document.getElementById('dashboard-section').classList.add('hidden');
@@ -312,9 +320,7 @@
             document.getElementById('auth-section').classList.add('block');
             
             document.getElementById('login-form').reset();
-            document.getElementById('register-form').reset();
             switchTab('login');
-            
             AOS.refreshHard();
         }
     </script>
