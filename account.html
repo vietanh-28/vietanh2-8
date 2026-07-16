@@ -17,7 +17,6 @@
 </head>
 <body class="bg-grid-pattern text-slate-800 relative min-h-screen">
 
-    <!-- Header Glassmorphism -->
     <header class="sticky top-0 z-40 backdrop-blur-md bg-white/70 border-b border-slate-200/50 shadow-sm transition-all duration-300">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center relative">
             <div class="flex items-center gap-3 cursor-pointer">
@@ -30,11 +29,8 @@
             
             <div class="relative">
                 <button id="menu-button" onclick="toggleMenu(event)" class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all bg-white shadow-sm">
-                    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
-                
                 <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 transform origin-top-right transition-all">
                     <a href="index.html" class="px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-600 font-medium flex items-center gap-3 transition-colors">
                         <div class="p-1.5 bg-blue-100 rounded-md text-blue-600">
@@ -58,9 +54,7 @@
                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 Tài khoản Hệ Thống
             </h1>
-            <p class="text-sm text-slate-500 mb-6 leading-relaxed">
-                Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>. Nếu chưa có tài khoản, vui lòng đăng ký.
-            </p>
+            <p class="text-sm text-slate-500 mb-6 leading-relaxed">Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>.</p>
 
             <div class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
                 <button id="btn-tab-login" onclick="switchTab('login')" class="w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300">Đăng nhập</button>
@@ -76,10 +70,7 @@
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Mật khẩu</label>
                     <input type="password" id="login-password" placeholder="Mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
                 </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5">
-                    Đăng nhập ngay
-                </button>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5">Đăng nhập ngay</button>
             </form>
 
             <form id="register-form" onsubmit="handleRegister(event)" class="hidden">
@@ -95,16 +86,12 @@
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Nhập lại mật khẩu</label>
                     <input type="password" id="reg-confirm" placeholder="Xác nhận mật khẩu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required minlength="6">
                 </div>
-
-                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-slate-900/20 mb-5">
-                    Tạo tài khoản mới
-                </button>
+                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-slate-900/20 mb-5">Tạo tài khoản mới</button>
             </form>
 
             <div id="extra-links" class="flex flex-col gap-4 block border-t border-slate-100 pt-5">
                 <button class="flex items-center justify-center gap-2 border border-slate-200 bg-white rounded-full py-2 px-4 text-sm font-semibold text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 w-max transition-all duration-300">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
-                    Quên mật khẩu?
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg> Quên mật khẩu?
                 </button>
                 <p class="text-sm font-medium text-slate-600 mt-1">Chưa có tài khoản? <a href="javascript:void(0)" onclick="switchTab('register')" class="text-blue-600 font-bold hover:underline">Đăng ký ngay</a></p>
             </div>
@@ -159,6 +146,17 @@
                         <p class="text-lg font-bold text-slate-800">60 phút + <span id="wallet-balance" class="text-blue-600 font-extrabold">0 phút</span> ví phút</p>
                     </div>
                     
+                    <!-- Khối mới: Số Dư VNĐ -->
+                    <div class="bg-green-50/50 rounded-2xl p-5 border border-green-100 hover:shadow-md hover:shadow-green-500/10 transition-shadow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <p class="text-xs font-bold text-green-600 uppercase tracking-wider">Số dư VNĐ</p>
+                        </div>
+                        <p class="text-xl font-bold text-slate-800"><span id="account-money-balance">0</span> <span class="text-sm font-normal text-slate-500">đ</span></p>
+                    </div>
+
                     <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:shadow-md transition-shadow">
                         <div class="flex items-center gap-2 mb-2">
                             <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
@@ -182,9 +180,7 @@
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Mini</h3>
                         <p class="text-4xl font-black text-slate-900 mb-2">20.000<span class="text-xl text-slate-500 ml-1">đ</span></p>
                         <p class="text-slate-500 font-medium mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 200 phút sử dụng</p>
-                        <button class="mt-6 w-full bg-slate-50 border-2 border-slate-100 text-slate-800 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-300">
-                            Mua gói ngay
-                        </button>
+                        <button class="mt-6 w-full bg-slate-50 border-2 border-slate-100 text-slate-800 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all duration-300">Mua gói ngay</button>
                     </div>
 
                     <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 rounded-3xl p-8 border border-slate-800 shadow-xl shadow-blue-900/20 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 relative group overflow-hidden">
@@ -192,9 +188,7 @@
                         <h3 class="text-xl font-bold text-blue-200 mb-2">Starter</h3>
                         <p class="text-4xl font-black text-white mb-2">50.000<span class="text-xl text-blue-300 ml-1">đ</span></p>
                         <p class="text-blue-100 font-medium mb-1 flex items-center gap-2"><svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 550 phút sử dụng</p>
-                        <button class="mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-500/40 transition-all duration-300">
-                            Mua gói ngay
-                        </button>
+                        <button class="mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-500/40 transition-all duration-300">Mua gói ngay</button>
                     </div>
                 </div>
             </div>
@@ -206,18 +200,19 @@
     <script>
         AOS.init({ once: true, duration: 600 });
 
-        // TỰ ĐỘNG KIỂM TRA ĐĂNG NHẬP KHI MỞ TRANG
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('ae_is_logged_in');
             
-            // Nếu cờ đăng nhập = true, hiển thị thẳng Dashboard
             if (isLoggedIn === 'true') {
                 const savedData = localStorage.getItem('ae_user_account');
                 if (savedData) {
                     const user = JSON.parse(savedData);
                     document.getElementById('dashboard-email').innerText = user.email;
                     document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
+                    
                     document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
+                    // HIỂN THỊ SỐ TIỀN VNĐ
+                    document.getElementById('account-money-balance').innerText = (user.balance || 0).toLocaleString('vi-VN');
                     
                     document.getElementById('auth-section').classList.remove('block');
                     document.getElementById('auth-section').classList.add('hidden');
@@ -272,7 +267,7 @@
                 return;
             }
 
-            const userData = { email: email, password: password, walletMinutes: 0 };
+            const userData = { email: email, password: password, walletMinutes: 0, balance: 0 };
             localStorage.setItem('ae_user_account', JSON.stringify(userData));
             
             alert("Đăng ký tài khoản thành công! Vui lòng đăng nhập để sử dụng.");
@@ -291,13 +286,14 @@
                 const user = JSON.parse(savedData);
                 
                 if (user.email === emailInput && user.password === passwordInput) {
-                    
-                    // LƯU CỜ ĐĂNG NHẬP THÀNH CÔNG VÀO TRÌNH DUYỆT
                     localStorage.setItem('ae_is_logged_in', 'true');
 
                     document.getElementById('dashboard-email').innerText = user.email;
                     document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
+                    
                     document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
+                    // HIỂN THỊ SỐ TIỀN VNĐ
+                    document.getElementById('account-money-balance').innerText = (user.balance || 0).toLocaleString('vi-VN');
 
                     document.getElementById('auth-section').classList.remove('block');
                     document.getElementById('auth-section').classList.add('hidden');
@@ -315,15 +311,11 @@
         }
 
         function handleLogout() {
-            // XÓA CỜ ĐĂNG NHẬP KHI ĐĂNG XUẤT
             localStorage.removeItem('ae_is_logged_in');
-
             document.getElementById('dashboard-section').classList.remove('block');
             document.getElementById('dashboard-section').classList.add('hidden');
-            
             document.getElementById('auth-section').classList.remove('hidden');
             document.getElementById('auth-section').classList.add('block');
-            
             document.getElementById('login-form').reset();
             switchTab('login');
             AOS.refreshHard();
