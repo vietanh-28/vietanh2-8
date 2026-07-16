@@ -18,7 +18,7 @@
 </head>
 <body class="bg-grid-pattern text-slate-800 relative">
 
-    <!-- Header Glassmorphism (Kính mờ, cố định khi cuộn) -->
+    <!-- Header Glassmorphism -->
     <header class="sticky top-0 z-40 backdrop-blur-md bg-white/70 border-b border-slate-200/50 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2 cursor-pointer">
@@ -29,8 +29,8 @@
             </div>
             <div class="flex items-center space-x-4">
                 <span class="text-slate-500 text-sm hidden sm:block">Chào mừng bạn!</span>
-                <!-- Nút đã được đổi thành thẻ a và trỏ link sang account.html -->
-                <a href="account.html" class="inline-block bg-slate-900 text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-center">
+                <!-- THÊM ID VÀO NÚT NÀY -->
+                <a id="header-auth-btn" href="account.html" class="inline-block bg-slate-900 text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-center">
                     Đăng nhập
                 </a>
             </div>
@@ -104,13 +104,9 @@
                     </button>
                 </div>
             </a>
-
-            <!-- Có thể nhân bản thêm các khối <a> sản phẩm tương tự ở đây -->
-
         </div>
     </main>
 
-    <!-- Nút liên hệ Facebook góc dưới bên phải -->
     <a href="https://www.facebook.com/viettran.213" target="_blank" class="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white p-3.5 rounded-full shadow-lg shadow-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/60 transition-all duration-300 z-50 flex items-center justify-center group cursor-pointer animate-bounce">
         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
         <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-3 transition-all duration-500 ease-in-out font-semibold text-sm">
@@ -122,6 +118,19 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 800 });
+
+        // === THÊM ĐOẠN JS NÀY ĐỂ CHECK TRẠNG THÁI ĐĂNG NHẬP ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('ae_is_logged_in');
+            const authBtn = document.getElementById('header-auth-btn');
+            
+            if (isLoggedIn === 'true' && authBtn) {
+                // Đổi chữ "Đăng nhập" thành "Tài khoản" nếu đã đăng nhập
+                authBtn.innerText = 'Tài khoản';
+                // Đổi màu nút sang xanh lá để tạo điểm nhấn đã đăng nhập
+                authBtn.className = 'inline-block bg-emerald-500 text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 transform hover:-translate-y-0.5 text-center';
+            }
+        });
     </script>
 </body>
 </html>
