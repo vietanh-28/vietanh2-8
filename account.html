@@ -41,21 +41,27 @@
 
     <main class="max-w-4xl mx-auto mt-8 px-4 pb-20">
         
-        <!-- PHẦN ĐĂNG NHẬP (ẨN/HIỆN THEO JS) -->
+        <!-- PHẦN XÁC THỰC TÀI KHOẢN -->
         <div id="auth-section" data-aos="zoom-in" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 block relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 pointer-events-none"></div>
-            <p class="text-xs font-bold text-blue-500 tracking-wider mb-2 uppercase">Tài khoản</p>
-            <h1 class="text-2xl font-extrabold text-slate-800 flex items-center gap-2 mb-3">
-                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                Tài khoản Hệ Thống
-            </h1>
-            <p class="text-sm text-slate-500 mb-6">Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>.</p>
+            
+            <!-- Phần Tiêu đề thay đổi động -->
+            <div id="auth-header">
+                <p class="text-xs font-bold text-blue-500 tracking-wider mb-2 uppercase">Tài khoản</p>
+                <h1 class="text-2xl font-extrabold text-slate-800 flex items-center gap-2 mb-3">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Tài khoản Hệ Thống
+                </h1>
+                <p class="text-sm text-slate-500 mb-6">Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>.</p>
+            </div>
 
-            <div class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
+            <!-- Tabs chọn Đăng nhập / Đăng ký -->
+            <div id="tab-buttons" class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
                 <button id="btn-tab-login" onclick="switchTab('login')" class="w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300">Đăng nhập</button>
                 <button id="btn-tab-register" onclick="switchTab('register')" class="w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300">Đăng ký</button>
             </div>
 
+            <!-- 1. Form Đăng nhập -->
             <form id="login-form" onsubmit="handleLogin(event)" class="block">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email tài khoản</label>
@@ -68,6 +74,7 @@
                 <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5">Đăng nhập ngay</button>
             </form>
 
+            <!-- 2. Form Đăng ký -->
             <form id="register-form" onsubmit="handleRegister(event)" class="hidden">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Email của bạn</label>
@@ -84,7 +91,27 @@
                 <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mb-5">Tạo tài khoản mới</button>
             </form>
 
+            <!-- 3. Form Quên mật khẩu (MỚI THÊM) -->
+            <form id="forgot-form" onsubmit="handleForgotPassword(event)" class="hidden">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nhập Email đã đăng ký</label>
+                    <input type="email" id="forgot-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
+                    <p class="text-xs text-slate-500 mt-2">Hệ thống sẽ gửi mật khẩu khôi phục về hòm thư này.</p>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5">
+                    Gửi mật khẩu qua Email
+                </button>
+                <div class="text-center">
+                    <a href="javascript:void(0)" onclick="switchTab('login')" class="text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors">← Quay lại Đăng nhập</a>
+                </div>
+            </form>
+
             <div id="extra-links" class="flex flex-col gap-4 block border-t border-slate-100 pt-5">
+                <!-- Nút bấm Quên Mật Khẩu liên kết với hàm switchTab -->
+                <button onclick="switchTab('forgot')" class="flex items-center justify-center gap-2 border border-slate-200 bg-white rounded-full py-2 px-4 text-sm font-semibold text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 w-max transition-all duration-300">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
+                    Quên mật khẩu?
+                </button>
                 <p class="text-sm font-medium text-slate-600 mt-1">Chưa có tài khoản? <a href="javascript:void(0)" onclick="switchTab('register')" class="text-blue-600 font-bold hover:underline">Đăng ký ngay</a></p>
             </div>
         </div>
@@ -100,7 +127,7 @@
                     </div>
                     <div>
                         <div class="flex flex-wrap gap-2 mb-2">
-                            <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-emerald-100 uppercase tracking-wider">
+                            <span class="bg-emerald-50 text-emerald-600 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-emerald-100 uppercase tracking-wider">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Đã đăng nhập
                             </span>
                         </div>
@@ -149,7 +176,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="history-table-body">
-                                    <!-- Render lịch sử bằng JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -166,7 +192,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Gói Mini -->
                     <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-1 relative group">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full mix-blend-multiply opacity-50 group-hover:scale-110 transition-transform"></div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">Mini</h3>
@@ -177,7 +202,6 @@
                         </button>
                     </div>
 
-                    <!-- Gói Starter -->
                     <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 rounded-3xl p-8 border border-slate-800 shadow-xl shadow-blue-900/20 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 relative group overflow-hidden">
                         <div class="absolute -top-4 -right-4 w-32 h-32 bg-blue-500 rounded-full mix-blend-screen opacity-20 filter blur-xl group-hover:scale-125 transition-transform duration-500"></div>
                         <h3 class="text-xl font-bold text-blue-200 mb-2">Starter</h3>
@@ -227,22 +251,45 @@
             document.getElementById('dropdown-menu').classList.toggle('hidden');
         }
 
+        // ĐÃ NÂNG CẤP HÀM NÀY ĐỂ XỬ LÝ 3 TAB (LOGIN/REGISTER/FORGOT)
         function switchTab(tabType) {
             const btnLogin = document.getElementById('btn-tab-login');
             const btnRegister = document.getElementById('btn-tab-register');
             const formLogin = document.getElementById('login-form');
             const formRegister = document.getElementById('register-form');
+            const formForgot = document.getElementById('forgot-form');
+            const extraLinks = document.getElementById('extra-links');
+            const tabButtons = document.getElementById('tab-buttons');
+            const authHeader = document.getElementById('auth-header');
 
             if (tabType === 'login') {
+                authHeader.classList.remove('hidden');
+                tabButtons.classList.remove('hidden');
                 btnLogin.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnRegister.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
                 formLogin.classList.remove('hidden'); formLogin.classList.add('block');
                 formRegister.classList.remove('block'); formRegister.classList.add('hidden');
-            } else {
+                formForgot.classList.remove('block'); formForgot.classList.add('hidden');
+                extraLinks.classList.remove('hidden'); extraLinks.classList.add('flex');
+            } else if (tabType === 'register') {
+                authHeader.classList.remove('hidden');
+                tabButtons.classList.remove('hidden');
                 btnRegister.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnLogin.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
                 formRegister.classList.remove('hidden'); formRegister.classList.add('block');
                 formLogin.classList.remove('block'); formLogin.classList.add('hidden');
+                formForgot.classList.remove('block'); formForgot.classList.add('hidden');
+                extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
+            } else if (tabType === 'forgot') {
+                // Ẩn Header, Ẩn các nút Tab, Hiển thị Form Quên mật khẩu
+                authHeader.classList.add('hidden');
+                tabButtons.classList.add('hidden');
+                extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
+                
+                formLogin.classList.remove('block'); formLogin.classList.add('hidden');
+                formRegister.classList.remove('block'); formRegister.classList.add('hidden');
+                
+                formForgot.classList.remove('hidden'); formForgot.classList.add('block');
             }
         }
 
@@ -270,6 +317,13 @@
                 titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-emerald-600';
                 btnEl.className = 'w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-green-500/30 hover:-translate-y-0.5';
                 btnEl.innerText = "Tuyệt vời!";
+            } else if (type === 'mail') {
+                // Style riêng cho biểu tượng Email
+                iconBox.innerHTML = '📬';
+                iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/40 text-white transform -translate-y-8 border-4 border-white';
+                titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-blue-600';
+                btnEl.className = 'w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-blue-500/30 hover:-translate-y-0.5';
+                btnEl.innerText = "Đăng nhập ngay";
             } else {
                 iconBox.innerHTML = '😢';
                 iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-500/40 text-white transform -translate-y-8 border-4 border-white';
@@ -285,6 +339,37 @@
             content.classList.remove('scale-100', 'opacity-100');
             content.classList.add('scale-95', 'opacity-0');
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        // ===============================================
+        // HÀM XỬ LÝ KHÔI PHỤC MẬT KHẨU (GỬI VỀ EMAIL)
+        // ===============================================
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            const inputEmail = document.getElementById('forgot-email').value;
+            const savedData = localStorage.getItem('ae_user_account');
+
+            if (savedData) {
+                const user = JSON.parse(savedData);
+                // Kiểm tra email nhập vào có đúng với email trong hệ thống không
+                if (user.email === inputEmail) {
+                    // Hiện Modal Báo Thành Công & Chèn sẵn mật khẩu cho bản thử nghiệm
+                    showModal('mail', 'Đã Gửi Email!', [
+                        `<p class="text-center mb-2">Hệ thống đã gửi liên kết khôi phục và mật khẩu đến hộp thư <strong>${inputEmail}</strong> của bạn.</p>`,
+                        `<div class="p-3 bg-blue-50 text-blue-700 rounded-xl text-xs font-medium text-center border border-blue-100">`,
+                        `Dành cho Bản thử nghiệm UI: <br>Mật khẩu của bạn là: <strong class="text-lg text-slate-900">${user.password}</strong>`,
+                        `</div>`
+                    ]);
+                    
+                    // Reset form và chuyển hướng về trang Đăng Nhập
+                    document.getElementById('forgot-form').reset();
+                    switchTab('login');
+                } else {
+                    showModal('error', 'Lỗi Khôi Phục', ['<p class="text-center">Email này chưa được đăng ký trong hệ thống. Vui lòng kiểm tra lại!</p>']);
+                }
+            } else {
+                showModal('error', 'Chưa đăng ký', ['<p class="text-center">Hệ thống chưa có tài khoản nào được đăng ký.</p>']);
+            }
         }
 
         // ĐĂNG KÝ, ĐĂNG NHẬP, LOAD BẢNG
@@ -328,10 +413,8 @@
             document.getElementById('dashboard-email').innerText = user.email;
             document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
             
-            // Cập nhật số phút trên giao diện ngay lập tức
             document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
 
-            // Render bảng lịch sử
             const tbody = document.getElementById('history-table-body');
             const noMsg = document.getElementById('no-history-msg');
             tbody.innerHTML = '';
@@ -378,24 +461,19 @@
             let currentBalance = user.balance || 0;
 
             if (currentBalance >= price) {
-                // Đủ tiền -> Trừ tiền & Cộng phút & Cộng tổng tiêu
                 user.balance = currentBalance - price;
                 user.walletMinutes = (user.walletMinutes || 0) + minutes;
                 user.totalSpent = (user.totalSpent || 0) + price;
 
-                // Ghi vào lịch sử giao dịch
                 if(!user.purchaseHistory) user.purchaseHistory = [];
                 const now = new Date();
                 const dateStr = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) + ' - ' + now.toLocaleDateString('vi-VN');
                 user.purchaseHistory.push({ name: packageName, price: price, date: dateStr });
 
-                // Lưu lại vào trình duyệt
                 localStorage.setItem('ae_user_account', JSON.stringify(user));
 
-                // Load lại bảng thông số trên màn hình ngay lập tức
                 loadDashboardUI(user);
 
-                // Hiển thị Popup Xinh đẹp
                 showModal('success', 'Nạp phút thành công!', [
                     `<div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-2 space-y-2">`,
                     `<div class="flex justify-between"><span class="text-slate-500">Gói nạp:</span> <strong class="text-slate-800 text-right line-clamp-1">${packageName}</strong></div>`,
@@ -405,7 +483,6 @@
                     `<div class="flex justify-between px-2 mb-2"><span class="text-slate-500 font-semibold">Số dư VNĐ còn lại:</span> <strong class="text-emerald-600 text-lg">${user.balance.toLocaleString('vi-VN')}đ</strong></div>`
                 ]);
             } else {
-                // Thiếu tiền
                 showModal('error', 'Hết tiền rồi!', [
                     `<p class="text-center mb-3">Tài khoản của bạn hiện có <strong>${currentBalance.toLocaleString('vi-VN')}đ</strong>, không đủ để mua gói này.</p>`,
                     `<div class="p-3 bg-red-50 text-red-600 rounded-xl text-xs font-medium text-center border border-red-100">Vui lòng liên hệ Admin nạp thêm tiền để tiếp tục nha!</div>`
