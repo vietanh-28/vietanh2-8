@@ -216,7 +216,7 @@
         </div>
     </main>
 
-    <!-- CUSTOM POPUP MODAL (THÔNG BÁO ĐẸP & XINH) -->
+    <!-- CUSTOM POPUP MODAL -->
     <div id="custom-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
         <!-- Nền mờ -->
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
@@ -375,16 +375,16 @@
                 submitBtn.disabled = true;
 
                 // ----------------------------------------------------
-                // ĐÃ CẬP NHẬT CÁC KEY THEO YÊU CẦU CỦA BẠN
+                // ĐÃ SỬA CHỮ S THÀNH VIẾT THƯỜNG
                 // ----------------------------------------------------
                 const YOUR_PUBLIC_KEY = "Bw--9nA7dfh1A5GIR";
-                const YOUR_SERVICE_ID = "Service_h4ii5u7"; 
+                const YOUR_SERVICE_ID = "service_h4ii5u7"; // Sửa 'S' thành 's'
                 const YOUR_TEMPLATE_ID = "template_ovpo9hk";
 
                 // Gắn Public Key vào hệ thống EmailJS
                 emailjs.init(YOUR_PUBLIC_KEY);
 
-                // Các tham số tương ứng với {{to_email}} và {{user_password}} đã tạo ở Template
+                // Các tham số tương ứng với {{to_email}} và {{user_password}}
                 const templateParams = {
                     to_email: user.email,
                     user_password: user.password
@@ -404,11 +404,19 @@
                         document.getElementById('forgot-form').reset();
                         switchTab('login');
                     }, function(error) {
-                        // Thất bại
+                        // Thất bại: Hiển thị lỗi chi tiết ra màn hình
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                         console.error('Lỗi EmailJS:', error);
-                        showModal('error', 'Lỗi Hệ Thống', ['<p class="text-center">Hệ thống gửi mail đang gặp sự cố. Vui lòng thử lại sau!</p>']);
+                        
+                        // Trích xuất thông báo lỗi chính xác từ EmailJS
+                        let errorDetail = error.text || error.message || "Lỗi không xác định";
+                        
+                        showModal('error', 'Lỗi Hệ Thống', [
+                            `<p class="text-center mb-2 text-slate-700">EmailJS từ chối gửi thư với mã lỗi:</p>`,
+                            `<div class="p-3 bg-red-50 text-red-600 rounded-xl text-xs font-bold text-center border border-red-200 uppercase">${errorDetail}</div>`,
+                            `<p class="text-center text-xs mt-3 text-slate-500">Hãy chụp màn hình lỗi này lại nhé!</p>`
+                        ]);
                     });
 
             } else {
