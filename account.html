@@ -45,7 +45,6 @@
         <div id="auth-section" data-aos="zoom-in" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 block relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full mix-blend-multiply filter blur-2xl opacity-70 pointer-events-none"></div>
             
-            <!-- Phần Tiêu đề thay đổi động -->
             <div id="auth-header">
                 <p class="text-xs font-bold text-blue-500 tracking-wider mb-2 uppercase">Tài khoản</p>
                 <h1 class="text-2xl font-extrabold text-slate-800 flex items-center gap-2 mb-3">
@@ -55,7 +54,6 @@
                 <p class="text-sm text-slate-500 mb-6">Đăng nhập để xem gói, phút còn lại và máy đang dùng tại hệ thống <b>aexuattinhsom.center</b>.</p>
             </div>
 
-            <!-- Tabs chọn Đăng nhập / Đăng ký -->
             <div id="tab-buttons" class="flex bg-slate-100 p-1.5 rounded-xl mb-6 relative">
                 <button id="btn-tab-login" onclick="switchTab('login')" class="w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300">Đăng nhập</button>
                 <button id="btn-tab-register" onclick="switchTab('register')" class="w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300">Đăng ký</button>
@@ -91,7 +89,7 @@
                 <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mb-5">Tạo tài khoản mới</button>
             </form>
 
-            <!-- 3. Form Quên mật khẩu (MỚI THÊM) -->
+            <!-- 3. Form Quên mật khẩu -->
             <form id="forgot-form" onsubmit="handleForgotPassword(event)" class="hidden">
                 <div class="mb-6">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Nhập Email đã đăng ký</label>
@@ -107,7 +105,6 @@
             </form>
 
             <div id="extra-links" class="flex flex-col gap-4 block border-t border-slate-100 pt-5">
-                <!-- Nút bấm Quên Mật Khẩu liên kết với hàm switchTab -->
                 <button onclick="switchTab('forgot')" class="flex items-center justify-center gap-2 border border-slate-200 bg-white rounded-full py-2 px-4 text-sm font-semibold text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 w-max transition-all duration-300">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
                     Quên mật khẩu?
@@ -234,15 +231,43 @@
     <script>
         AOS.init({ once: true, duration: 600 });
 
+        // ==========================================
+        // CƠ SỞ DỮ LIỆU ĐA TÀI KHOẢN (MẢNG)
+        // ==========================================
+        function getUsersDB() {
+            return JSON.parse(localStorage.getItem('ae_users_db')) || [];
+        }
+
+        function saveUsersDB(db) {
+            localStorage.setItem('ae_users_db', JSON.stringify(db));
+        }
+
+        function getCurrentUser() {
+            const email = localStorage.getItem('ae_current_user');
+            if(!email) return null;
+            const db = getUsersDB();
+            return db.find(u => u.email === email);
+        }
+
+        function saveCurrentUser(userObj) {
+            const db = getUsersDB();
+            const index = db.findIndex(u => u.email === userObj.email);
+            if(index > -1) {
+                db[index] = userObj; // Cập nhật user có sẵn
+            } else {
+                db.push(userObj); // Thêm user mới (đề phòng)
+            }
+            saveUsersDB(db);
+        }
+
+        // ==========================================
         // LOGIC CHUNG UI
+        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('ae_is_logged_in');
             if (isLoggedIn === 'true') {
-                const savedData = localStorage.getItem('ae_user_account');
-                if (savedData) {
-                    const user = JSON.parse(savedData);
-                    loadDashboardUI(user);
-                }
+                const user = getCurrentUser();
+                if (user) loadDashboardUI(user);
             }
         });
 
@@ -251,7 +276,6 @@
             document.getElementById('dropdown-menu').classList.toggle('hidden');
         }
 
-        // ĐÃ NÂNG CẤP HÀM NÀY ĐỂ XỬ LÝ 3 TAB (LOGIN/REGISTER/FORGOT)
         function switchTab(tabType) {
             const btnLogin = document.getElementById('btn-tab-login');
             const btnRegister = document.getElementById('btn-tab-register');
@@ -281,19 +305,18 @@
                 formForgot.classList.remove('block'); formForgot.classList.add('hidden');
                 extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
             } else if (tabType === 'forgot') {
-                // Ẩn Header, Ẩn các nút Tab, Hiển thị Form Quên mật khẩu
                 authHeader.classList.add('hidden');
                 tabButtons.classList.add('hidden');
                 extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
-                
                 formLogin.classList.remove('block'); formLogin.classList.add('hidden');
                 formRegister.classList.remove('block'); formRegister.classList.add('hidden');
-                
                 formForgot.classList.remove('hidden'); formForgot.classList.add('block');
             }
         }
 
-        // HÀM HIỂN THỊ THÔNG BÁO MODAL
+        // ==========================================
+        // MODAL ĐẸP
+        // ==========================================
         function showModal(type, title, messages) {
             const modal = document.getElementById('custom-modal');
             const content = document.getElementById('modal-content');
@@ -318,7 +341,6 @@
                 btnEl.className = 'w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-green-500/30 hover:-translate-y-0.5';
                 btnEl.innerText = "Tuyệt vời!";
             } else if (type === 'mail') {
-                // Style riêng cho biểu tượng Email
                 iconBox.innerHTML = '📬';
                 iconBox.className = 'w-20 h-20 text-4xl rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/40 text-white transform -translate-y-8 border-4 border-white';
                 titleEl.className = 'text-2xl font-extrabold text-center mb-4 text-blue-600';
@@ -341,38 +363,29 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // ===============================================
-        // HÀM XỬ LÝ KHÔI PHỤC MẬT KHẨU (GỬI VỀ EMAIL)
-        // ===============================================
+        // ==========================================
+        // XỬ LÝ ĐĂNG KÝ / ĐĂNG NHẬP / QUÊN MK
+        // ==========================================
         function handleForgotPassword(event) {
             event.preventDefault();
             const inputEmail = document.getElementById('forgot-email').value;
-            const savedData = localStorage.getItem('ae_user_account');
+            const db = getUsersDB();
+            const user = db.find(u => u.email === inputEmail);
 
-            if (savedData) {
-                const user = JSON.parse(savedData);
-                // Kiểm tra email nhập vào có đúng với email trong hệ thống không
-                if (user.email === inputEmail) {
-                    // Hiện Modal Báo Thành Công & Chèn sẵn mật khẩu cho bản thử nghiệm
-                    showModal('mail', 'Đã Gửi Email!', [
-                        `<p class="text-center mb-2">Hệ thống đã gửi liên kết khôi phục và mật khẩu đến hộp thư <strong>${inputEmail}</strong> của bạn.</p>`,
-                        `<div class="p-3 bg-blue-50 text-blue-700 rounded-xl text-xs font-medium text-center border border-blue-100">`,
-                        `Dành cho Bản thử nghiệm UI: <br>Mật khẩu của bạn là: <strong class="text-lg text-slate-900">${user.password}</strong>`,
-                        `</div>`
-                    ]);
-                    
-                    // Reset form và chuyển hướng về trang Đăng Nhập
-                    document.getElementById('forgot-form').reset();
-                    switchTab('login');
-                } else {
-                    showModal('error', 'Lỗi Khôi Phục', ['<p class="text-center">Email này chưa được đăng ký trong hệ thống. Vui lòng kiểm tra lại!</p>']);
-                }
+            if (user) {
+                showModal('mail', 'Đã Gửi Email!', [
+                    `<p class="text-center mb-2">Hệ thống đã gửi liên kết khôi phục và mật khẩu đến hộp thư <strong>${inputEmail}</strong> của bạn.</p>`,
+                    `<div class="p-3 bg-blue-50 text-blue-700 rounded-xl text-xs font-medium text-center border border-blue-100">`,
+                    `Dành cho Bản thử nghiệm UI: <br>Mật khẩu của bạn là: <strong class="text-lg text-slate-900">${user.password}</strong>`,
+                    `</div>`
+                ]);
+                document.getElementById('forgot-form').reset();
+                switchTab('login');
             } else {
-                showModal('error', 'Chưa đăng ký', ['<p class="text-center">Hệ thống chưa có tài khoản nào được đăng ký.</p>']);
+                showModal('error', 'Lỗi Khôi Phục', ['<p class="text-center">Email này chưa được đăng ký trong hệ thống. Vui lòng kiểm tra lại!</p>']);
             }
         }
 
-        // ĐĂNG KÝ, ĐĂNG NHẬP, LOAD BẢNG
         function handleRegister(event) {
             event.preventDefault();
             const email = document.getElementById('reg-email').value;
@@ -382,8 +395,17 @@
             if (password !== confirmPassword) {
                 showModal('error', 'Lỗi đăng ký', ['<p class="text-center">Mật khẩu xác nhận không khớp!</p>']); return;
             }
-            const userData = { email: email, password: password, walletMinutes: 0, balance: 0, totalSpent: 0, purchaseHistory: [] };
-            localStorage.setItem('ae_user_account', JSON.stringify(userData));
+
+            const db = getUsersDB();
+            // Kiểm tra xem email đã tồn tại chưa
+            if (db.find(u => u.email === email)) {
+                showModal('error', 'Lỗi đăng ký', ['<p class="text-center">Email này đã được đăng ký. Vui lòng sử dụng email khác!</p>']); return;
+            }
+
+            // Tạo User mới và Lưu vào Mảng
+            const newUser = { email: email, password: password, walletMinutes: 0, balance: 0, totalSpent: 0, purchaseHistory: [] };
+            db.push(newUser);
+            saveUsersDB(db);
             
             showModal('success', 'Thành công', ['<p class="text-center">Tạo tài khoản thành công! Bạn có thể đăng nhập ngay.</p>']);
             document.getElementById('register-form').reset();
@@ -394,18 +416,17 @@
             event.preventDefault(); 
             const emailInput = document.getElementById('login-email').value;
             const passwordInput = document.getElementById('login-password').value;
-            const savedData = localStorage.getItem('ae_user_account');
+            
+            const db = getUsersDB();
+            const user = db.find(u => u.email === emailInput && u.password === passwordInput);
 
-            if (savedData) {
-                const user = JSON.parse(savedData);
-                if (user.email === emailInput && user.password === passwordInput) {
-                    localStorage.setItem('ae_is_logged_in', 'true');
-                    loadDashboardUI(user);
-                } else {
-                    showModal('error', 'Đăng nhập thất bại', ['<p class="text-center">Sai email hoặc mật khẩu. Vui lòng thử lại!</p>']);
-                }
+            if (user) {
+                // Đăng nhập thành công, set email vào current_user
+                localStorage.setItem('ae_current_user', user.email);
+                localStorage.setItem('ae_is_logged_in', 'true');
+                loadDashboardUI(user);
             } else {
-                showModal('error', 'Chưa đăng ký', ['<p class="text-center">Hệ thống chưa có tài khoản nào được đăng ký.</p>']);
+                showModal('error', 'Đăng nhập thất bại', ['<p class="text-center">Sai email hoặc mật khẩu. Vui lòng thử lại!</p>']);
             }
         }
 
@@ -445,6 +466,7 @@
 
         function handleLogout() {
             localStorage.removeItem('ae_is_logged_in');
+            localStorage.removeItem('ae_current_user'); // Xóa cả current_user
             document.getElementById('dashboard-section').classList.remove('block');
             document.getElementById('dashboard-section').classList.add('hidden');
             document.getElementById('auth-section').classList.remove('hidden');
@@ -453,11 +475,13 @@
             switchTab('login');
         }
 
-        // HÀM XỬ LÝ KHI BẤM MUA GÓI PHÚT
+        // ==========================================
+        // XỬ LÝ MUA GÓI PHÚT
+        // ==========================================
         function handleBuyPackage(price, minutes, packageName) {
-            const savedData = localStorage.getItem('ae_user_account');
-            if (!savedData) return;
-            let user = JSON.parse(savedData);
+            let user = getCurrentUser();
+            if(!user) return; // Không có user thì hủy bỏ
+            
             let currentBalance = user.balance || 0;
 
             if (currentBalance >= price) {
@@ -470,7 +494,8 @@
                 const dateStr = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) + ' - ' + now.toLocaleDateString('vi-VN');
                 user.purchaseHistory.push({ name: packageName, price: price, date: dateStr });
 
-                localStorage.setItem('ae_user_account', JSON.stringify(user));
+                // LƯU UPDATE VÀO CƠ SỞ DỮ LIỆU CHUNG
+                saveCurrentUser(user);
 
                 loadDashboardUI(user);
 
