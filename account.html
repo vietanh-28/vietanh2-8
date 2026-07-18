@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Tích hợp thư viện EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .bg-grid-pattern { background-image: radial-gradient(#e2e8f0 1px, transparent 1px); background-size: 20px 20px; }
@@ -96,7 +99,7 @@
                     <input type="email" id="forgot-email" placeholder="you@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm font-medium" required>
                     <p class="text-xs text-slate-500 mt-2">Hệ thống sẽ gửi mật khẩu khôi phục về hòm thư này.</p>
                 </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5">
+                <button type="submit" id="btn-forgot-submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-blue-500/30 mb-5 flex justify-center items-center gap-2">
                     Gửi mật khẩu qua Email
                 </button>
                 <div class="text-center">
@@ -253,16 +256,14 @@
             const db = getUsersDB();
             const index = db.findIndex(u => u.email === userObj.email);
             if(index > -1) {
-                db[index] = userObj; // Cập nhật user có sẵn
+                db[index] = userObj; 
             } else {
-                db.push(userObj); // Thêm user mới (đề phòng)
+                db.push(userObj); 
             }
             saveUsersDB(db);
         }
 
-        // ==========================================
         // LOGIC CHUNG UI
-        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('ae_is_logged_in');
             if (isLoggedIn === 'true') {
@@ -287,8 +288,7 @@
             const authHeader = document.getElementById('auth-header');
 
             if (tabType === 'login') {
-                authHeader.classList.remove('hidden');
-                tabButtons.classList.remove('hidden');
+                authHeader.classList.remove('hidden'); tabButtons.classList.remove('hidden');
                 btnLogin.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnRegister.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
                 formLogin.classList.remove('hidden'); formLogin.classList.add('block');
@@ -296,8 +296,7 @@
                 formForgot.classList.remove('block'); formForgot.classList.add('hidden');
                 extraLinks.classList.remove('hidden'); extraLinks.classList.add('flex');
             } else if (tabType === 'register') {
-                authHeader.classList.remove('hidden');
-                tabButtons.classList.remove('hidden');
+                authHeader.classList.remove('hidden'); tabButtons.classList.remove('hidden');
                 btnRegister.className = "w-1/2 bg-white text-slate-800 font-bold py-2 rounded-lg shadow-sm text-sm transition-all duration-300";
                 btnLogin.className = "w-1/2 text-slate-500 font-medium py-2 rounded-lg text-sm hover:text-slate-800 transition-all duration-300";
                 formRegister.classList.remove('hidden'); formRegister.classList.add('block');
@@ -305,8 +304,7 @@
                 formForgot.classList.remove('block'); formForgot.classList.add('hidden');
                 extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
             } else if (tabType === 'forgot') {
-                authHeader.classList.add('hidden');
-                tabButtons.classList.add('hidden');
+                authHeader.classList.add('hidden'); tabButtons.classList.add('hidden');
                 extraLinks.classList.remove('flex'); extraLinks.classList.add('hidden');
                 formLogin.classList.remove('block'); formLogin.classList.add('hidden');
                 formRegister.classList.remove('block'); formRegister.classList.add('hidden');
@@ -314,9 +312,6 @@
             }
         }
 
-        // ==========================================
-        // MODAL ĐẸP
-        // ==========================================
         function showModal(type, title, messages) {
             const modal = document.getElementById('custom-modal');
             const content = document.getElementById('modal-content');
@@ -363,9 +358,9 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // ==========================================
-        // XỬ LÝ ĐĂNG KÝ / ĐĂNG NHẬP / QUÊN MK
-        // ==========================================
+        // ===============================================
+        // TÍCH HỢP EMAILJS ĐỂ GỬI MAIL THẬT
+        // ===============================================
         function handleForgotPassword(event) {
             event.preventDefault();
             const inputEmail = document.getElementById('forgot-email').value;
@@ -373,19 +368,55 @@
             const user = db.find(u => u.email === inputEmail);
 
             if (user) {
-                showModal('mail', 'Đã Gửi Email!', [
-                    `<p class="text-center mb-2">Hệ thống đã gửi liên kết khôi phục và mật khẩu đến hộp thư <strong>${inputEmail}</strong> của bạn.</p>`,
-                    `<div class="p-3 bg-blue-50 text-blue-700 rounded-xl text-xs font-medium text-center border border-blue-100">`,
-                    `Dành cho Bản thử nghiệm UI: <br>Mật khẩu của bạn là: <strong class="text-lg text-slate-900">${user.password}</strong>`,
-                    `</div>`
-                ]);
-                document.getElementById('forgot-form').reset();
-                switchTab('login');
+                // Đổi trạng thái nút thành Đang Gửi
+                const submitBtn = document.getElementById('btn-forgot-submit');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Đang gửi email...`;
+                submitBtn.disabled = true;
+
+                // ----------------------------------------------------
+                // ĐÃ CẬP NHẬT CÁC KEY THEO YÊU CẦU CỦA BẠN
+                // ----------------------------------------------------
+                const YOUR_PUBLIC_KEY = "Bw--9nA7dfh1A5GIR";
+                const YOUR_SERVICE_ID = "Service_h4ii5u7"; 
+                const YOUR_TEMPLATE_ID = "template_ovpo9hk";
+
+                // Gắn Public Key vào hệ thống EmailJS
+                emailjs.init(YOUR_PUBLIC_KEY);
+
+                // Các tham số tương ứng với {{to_email}} và {{user_password}} đã tạo ở Template
+                const templateParams = {
+                    to_email: user.email,
+                    user_password: user.password
+                };
+
+                // Lệnh gửi email
+                emailjs.send(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, templateParams)
+                    .then(function(response) {
+                        // Thành công
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        showModal('mail', 'Đã Gửi Email!', [
+                            `<p class="text-center mb-2">Hệ thống đã gửi liên kết khôi phục và mật khẩu đến hộp thư <strong>${inputEmail}</strong> của bạn.</p>`,
+                            `<p class="text-center text-xs text-slate-500">Vui lòng kiểm tra hộp thư chính, thư mục Quảng cáo và thư Rác (Spam) nếu không thấy.</p>`
+                        ]);
+                        document.getElementById('forgot-form').reset();
+                        switchTab('login');
+                    }, function(error) {
+                        // Thất bại
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        console.error('Lỗi EmailJS:', error);
+                        showModal('error', 'Lỗi Hệ Thống', ['<p class="text-center">Hệ thống gửi mail đang gặp sự cố. Vui lòng thử lại sau!</p>']);
+                    });
+
             } else {
                 showModal('error', 'Lỗi Khôi Phục', ['<p class="text-center">Email này chưa được đăng ký trong hệ thống. Vui lòng kiểm tra lại!</p>']);
             }
         }
 
+        // ĐĂNG KÝ, ĐĂNG NHẬP, LOAD BẢNG
         function handleRegister(event) {
             event.preventDefault();
             const email = document.getElementById('reg-email').value;
@@ -397,12 +428,10 @@
             }
 
             const db = getUsersDB();
-            // Kiểm tra xem email đã tồn tại chưa
             if (db.find(u => u.email === email)) {
                 showModal('error', 'Lỗi đăng ký', ['<p class="text-center">Email này đã được đăng ký. Vui lòng sử dụng email khác!</p>']); return;
             }
 
-            // Tạo User mới và Lưu vào Mảng
             const newUser = { email: email, password: password, walletMinutes: 0, balance: 0, totalSpent: 0, purchaseHistory: [] };
             db.push(newUser);
             saveUsersDB(db);
@@ -421,7 +450,6 @@
             const user = db.find(u => u.email === emailInput && u.password === passwordInput);
 
             if (user) {
-                // Đăng nhập thành công, set email vào current_user
                 localStorage.setItem('ae_current_user', user.email);
                 localStorage.setItem('ae_is_logged_in', 'true');
                 loadDashboardUI(user);
@@ -433,7 +461,6 @@
         function loadDashboardUI(user) {
             document.getElementById('dashboard-email').innerText = user.email;
             document.getElementById('user-avatar-text').innerText = user.email.charAt(0).toUpperCase();
-            
             document.getElementById('wallet-balance').innerText = (user.walletMinutes || 0) + " phút";
 
             const tbody = document.getElementById('history-table-body');
@@ -466,7 +493,7 @@
 
         function handleLogout() {
             localStorage.removeItem('ae_is_logged_in');
-            localStorage.removeItem('ae_current_user'); // Xóa cả current_user
+            localStorage.removeItem('ae_current_user'); 
             document.getElementById('dashboard-section').classList.remove('block');
             document.getElementById('dashboard-section').classList.add('hidden');
             document.getElementById('auth-section').classList.remove('hidden');
@@ -475,12 +502,9 @@
             switchTab('login');
         }
 
-        // ==========================================
-        // XỬ LÝ MUA GÓI PHÚT
-        // ==========================================
         function handleBuyPackage(price, minutes, packageName) {
             let user = getCurrentUser();
-            if(!user) return; // Không có user thì hủy bỏ
+            if(!user) return; 
             
             let currentBalance = user.balance || 0;
 
@@ -494,9 +518,7 @@
                 const dateStr = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) + ' - ' + now.toLocaleDateString('vi-VN');
                 user.purchaseHistory.push({ name: packageName, price: price, date: dateStr });
 
-                // LƯU UPDATE VÀO CƠ SỞ DỮ LIỆU CHUNG
                 saveCurrentUser(user);
-
                 loadDashboardUI(user);
 
                 showModal('success', 'Nạp phút thành công!', [
